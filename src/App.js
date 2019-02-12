@@ -22,10 +22,9 @@ class App extends Component {
         </header>
         <div>
           <form >
-  <input name="name" label="nombres" />
-  <input list="browsers" name="browser" />
-  <input type="submit" />
-</form>
+            <input name="name" label="nombres" />
+            <input type="submit" />
+          </form>
         </div>
       </div>
     );
