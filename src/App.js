@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faIgloo,
+  faSignInAlt,
+  faEnvelope,
+  faUser,
+  faUnlock,
+  faUniversity,
+  faIdCard
+} from '@fortawesome/free-solid-svg-icons';
+
+import logo from './assets/images/logo_transp.png';
 import './App.css';
+import Register from './view/register/Register';
+
+
+library.add(faIgloo, faSignInAlt, faEnvelope, faUser, faUnlock, faUniversity, faIdCard)
 
 class App extends Component {
   render() {
@@ -8,24 +24,10 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://esintycorp.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            EsintCorp 
-          </a>
         </header>
-        <div>
-          <form >
-            <input name="name" label="nombres" />
-            <input type="submit" />
-          </form>
-        </div>
+        <section className="App-section">
+          <Register />
+        </section>
       </div>
     );
   }
