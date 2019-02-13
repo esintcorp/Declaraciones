@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route/*, Link*/ } from "react-router-dom";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faIgloo,
   faSignInAlt,
@@ -26,7 +26,13 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <section className="App-section">
-          <Register />
+          <Router>
+            <div>
+              {/*<Route exact path="/" component={Home} />*/}
+              <Route path="/register" component={Register} />
+            </div>
+          </Router>
+
         </section>
       </div>
     );
