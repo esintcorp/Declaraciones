@@ -50,18 +50,20 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   flex: 1;
   margin-top: 40px;
   /* padding: 10px; */
   border-bottom: 1px white solid;
 }
 .input-style {
-  padding: 5px 20px;
+  padding: 10px 20px;
   outline: none;
 }
 
 .input-style:focus {
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid #2683FF;
+  border-radius: 5px;
 }
 
 input {

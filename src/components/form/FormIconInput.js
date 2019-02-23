@@ -2,11 +2,11 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /**
- * Input Form Component
+ * Form Input Component with Icon
  * props:
  * ...
  */
-const IconFormInput = props => (
+const FormIconInput = props => (
   <div className="App-input">
     {props.label ? <label htmlFor={props.name}>{props.label}</label> : null}
     <span><FontAwesomeIcon icon={props.iconName} /></span>
@@ -21,4 +21,4 @@ const IconFormInput = props => (
   </div>
 );
 
-export default IconFormInput;
+export default FormIconInput;
