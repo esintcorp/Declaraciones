@@ -6,19 +6,31 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
  * props:
  * ...
  */
-const FormIconInput = props => (
-  <div className="App-input">
-    {props.label ? <label htmlFor={props.name}>{props.label}</label> : null}
-    <span><FontAwesomeIcon icon={props.iconName} /></span>
-    <input
-      className="input-style"
-      name={props.name}
-      value={props.value}
-      onChange={props.onChange}
-      placeholder={props.placeholder ? props.placeholder : props.label}
-      // autoComplete="off"
-    />
-  </div>
-);
+
+const FormIconInput = ({ label, name, iconName, placeholder, addClassNames, ...restProps }) => {
+  let classNames = "input-style";
+
+  if (typeof(addClassNames) === "string") {
+    classNames += " " + addClassNames;
+  } else if (addClassNames) {
+    addClassNames.forEach(className => {
+      classNames += " " + className;
+    })
+  }
+
+  return (
+    <div className="App-input">
+      {label ? <label htmlFor={name}>{label}</label> : null}
+      <span><FontAwesomeIcon icon={iconName} /></span>
+      <input
+        {...restProps}
+        name={name}
+        className={classNames}
+        placeholder={placeholder || label}
+        // autoComplete="off"
+      />
+    </div>
+  );
+};
 
 export default FormIconInput;

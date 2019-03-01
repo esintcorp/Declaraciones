@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { isEmpty } from 'lodash';
-import { string as yupString, object as yupObject, array as yupArray } from "yup";
 
 import '../../App.css';
 
@@ -62,24 +61,22 @@ class Form extends Component {
     validationSchema.validate(body, { abortEarly: false, context: this.validationContext }).then(
       () => {
 
-        console.info("holaaaa")
+        console.info('BODY: ', body);
 
-            console.info('BODY: ', body);
-
-            fetch('http://localhost:8050/' + endpoint,{
-              method: "POST",
-              mode: 'cors',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(body)
-            }).then(response => {
-              console.info('response', response)
-              response.json().then(data =>{
-                console.log("Successful" + data);
-              })
-            });
+        fetch('http://localhost:8050/' + endpoint,{
+          method: "POST",
+          mode: 'cors',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+        }).then(response => {
+          console.info('response', response)
+          response.json().then(data =>{
+            console.log("Successful" + data);
+          })
+        });
       },
       validationError => {
         console.info("holaaaa erroooor", validationError)

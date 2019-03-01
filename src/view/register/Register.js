@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { string as yupString, object as yupObject, array as yupArray } from "yup";
+import { string as yupString, object as yupObject } from "yup";
 
 // import Select from 'react-select';
 import '../../App.css';
 import FormIconInput from '../../components/form/FormIconInput';
 import FormIconSelect from '../../components/form/FormIconSelect';
 import Form from '../../components/form/Form';
+import {iDCardValidator} from '../../utility/IDCardValidator';
 
 const typeOptions = [
   { value: 'nat', label: 'Persona Natural' },
@@ -62,13 +63,28 @@ class Register extends Component {
         endpoint="register"
         body={this.state.user}
         validationSchema={yupObject().shape({
-          email: yupString().required().email(),
-          password: yupString().required()
+          email: yupString().required("Correo Electrónico es un campo requerido")
+            .email("Correo Electrónico debe ser válido"),
+          password: yupString().required("Contraseña es un campo requerido"),
+          firstName: yupString().required("Nombres es un campo requerido"),
+          lastName: yupString().required("Apellidos es un campo requerido"),
+          idCard: yupString()
+            // Validate idCard & RUC inserted. https://medium.com/@bryansuarez/c%C3%B3mo-validar-c%C3%A9dula-y-ruc-en-ecuador-b62c5666186f
+            // Library to do this can be: https://github.com/diaspar/validacion-cedula-ruc-ecuador
+            // some code: https://www.jybaro.com/blog/cedula-de-identidad-ecuatoriana/
+            .test(
+              "idCardValidator",
+              "${path} no es una cédula válida",
+              value => iDCardValidator(value)
+            )
+            .length(10, "Cédula debe tener exáctamente ${length} caracteres")
+            .required("Cédula es un campo requerido")
         })}
         submitButton
       >
         <FormIconInput
           name="email"
+          type="email"
           placeholder="Correo Electrónico"
           value={this.state.user.email}
           onChange={this.handleChange}
@@ -76,6 +92,7 @@ class Register extends Component {
         />
         <FormIconInput
           name="password"
+          type="password"
           placeholder="Contraseña"
           value={this.state.user.password}
           onChange={this.handleChange}
@@ -89,23 +106,6 @@ class Register extends Component {
           onChange={this.handleSelectChange}
           iconName="university"
         />
-        {/*<div className="App-input">
-          <input list="browsers" name="browser" />
-          <datalist id="browsers">
-            <option value="Internet Explorer" />
-            <option value="Firefox" />
-            <option value="Chrome" />
-            <option value="Opera" />
-            <option value="Safari" />
-          </datalist>
-        </div>
-        <FormIconInput
-          name="type"
-          placeholder="Tipo de persona"
-          value={this.state.user.type}
-          onChange={this.handleChange}
-          iconName="university"
-        />*/}
         <FormIconInput
           name="firstName"
           placeholder="Nombres"
@@ -122,6 +122,9 @@ class Register extends Component {
         />
         <FormIconInput
           name="idCard"
+          type="number"
+          min="0"
+          addClassNames="hide-spin-button"
           placeholder="Cédula de identidad"
           value={this.state.user.idCard}
           onChange={this.handleChange}

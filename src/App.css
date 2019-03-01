@@ -68,6 +68,7 @@
   border-bottom: 1px white solid;
 }
 .input-style {
+  flex: 1;
   padding: 10px 20px;
   outline: none;
 }
@@ -86,6 +87,19 @@ input {
   color: inherit;
   cursor: inherit;
 }
+
+/* input[type='number'] {
+    -moz-appearance:textfield;
+} */
+
+/* Webkit browsers like Safari and Chrome */
+
+input.hide-spin-button::-webkit-inner-spin-button,
+input.hide-spin-button::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
