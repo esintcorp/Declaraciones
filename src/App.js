@@ -8,7 +8,8 @@ import {
   faUser,
   faUnlock,
   faUniversity,
-  faIdCard
+  faIdCard,
+  faExclamation
 } from '@fortawesome/free-solid-svg-icons';
 
 import logo from './assets/images/logo_transp.png';
@@ -16,7 +17,7 @@ import './App.css';
 import Register from './view/register/Register';
 
 
-library.add(faIgloo, faSignInAlt, faEnvelope, faUser, faUnlock, faUniversity, faIdCard)
+library.add(faIgloo, faSignInAlt, faEnvelope, faUser, faUnlock, faUniversity, faIdCard,faExclamation)
 
 class App extends Component {
   render() {

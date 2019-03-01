@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { string as yupString, object as yupObject, array as yupArray } from "yup";
 
 // import Select from 'react-select';
 import '../../App.css';
@@ -60,9 +61,12 @@ class Register extends Component {
       <Form
         endpoint="register"
         body={this.state.user}
+        validationSchema={yupObject().shape({
+          email: yupString().required().email(),
+          password: yupString().required()
+        })}
         submitButton
       >
-
         <FormIconInput
           name="email"
           placeholder="Correo Electrónico"
@@ -123,8 +127,6 @@ class Register extends Component {
           onChange={this.handleChange}
           iconName="id-card"
         />
-
-
 
       </Form>
     );

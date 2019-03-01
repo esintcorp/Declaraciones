@@ -46,6 +46,17 @@
   color: inherit;
 }
 
+.Form-errors-div {
+  display: flex;
+  flex-direction: column;
+  color: red;
+  /* flex: 1; */
+  margin: 20px 0;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
 .App-input {
   display: flex;
   flex-direction: row;
