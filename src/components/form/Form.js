@@ -21,18 +21,23 @@ const ErrorDiv = props => (
 const unflattenYupError = errors => {
   let result = {};
 
-  errors.forEach(error => {
-    console.info("HOLA ERROR", error)
-    // result = setIn(result, error.path, error.type == "required" ? "requiredFieldError" : error.message);
-    result = {
-      ...result,
-      [error.path]: error.message
-    }
-  });
+  if (errors) {
+    errors.forEach(error => {
+      console.info("HOLA ERROR", error)
+      // result = setIn(result, error.path, error.type == "required" ? "requiredFieldError" : error.message);
+      result = {
+        ...result,
+        [error.path || error.field]: error.message || error.defaultMessage
+      }
+    });
+  }
 
   return result;
 };
 
+const parametrizeJson = body => {
+  return Object.entries(body).map(e => e.join('=')).join('&');
+};
 /**
  * Form Component
  * props:
@@ -53,7 +58,7 @@ class Form extends Component {
   }
 
   handleSubmit(event) {
-    const { endpoint, body, validationSchema } = this.props;
+    const { endpoint, body, validationSchema, contentType = 'application/json' } = this.props;
 
     event.preventDefault();
 
@@ -61,20 +66,40 @@ class Form extends Component {
     validationSchema.validate(body, { abortEarly: false, context: this.validationContext }).then(
       () => {
 
-        console.info('BODY: ', body);
+        console.info('BODY: ', body, endpoint);
 
-        fetch('http://localhost:8050/' + endpoint,{
+        fetch('http://localhost:8050/' + endpoint, {
           method: "POST",
           mode: 'cors',
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': contentType
           },
-          body: JSON.stringify(body)
+          credentials: 'include',
+          body: endpoint === "application/json" ? JSON.stringify(body) : parametrizeJson(body)
         }).then(response => {
           console.info('response', response)
-          response.json().then(data =>{
-            console.log("Successful" + data);
+
+          response.json().then(data => {
+            if (!response.ok || response.status !== 200) {
+              this.setState({errors: unflattenYupError(data.errors)})
+              console.info("object", this.state.errors, data)
+            } else {
+              console.log("Successful", data);
+              if (typeof(Storage) !== "undefined" && data.token) {
+                // Store
+                localStorage.setItem("csrfToken", data.token);
+                console.info('TOKEEEENNNN', localStorage.getItem("csrfToken"))
+              } else if (data.message) {
+                this.setState({errors: data})
+                console.error(data.message)
+              } else {
+                console.error("Sorry, your browser does not support Web Storage...");
+              }
+              this.setState({errors: {}})
+            }
+          }).catch(e => {
+            console.info("eeerrrrooorr", e)
           })
         });
       },

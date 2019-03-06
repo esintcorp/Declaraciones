@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
  * ...
  */
 
-const FormIconInput = ({ style, label, name, iconName, placeholder, addClassNames, ...restProps }) => {
+const FormIconCheckbox = ({ style, label, name, iconName, placeholder, addClassNames, value, ...restProps }) => {
   let classNames = "input-style";
 
   if (typeof(addClassNames) === "string") {
@@ -20,17 +20,18 @@ const FormIconInput = ({ style, label, name, iconName, placeholder, addClassName
 
   return (
     <div className="App-input" style={style}>
-      {label ? <label htmlFor={name}>{label}</label> : null}
       <span><FontAwesomeIcon icon={iconName} /></span>
       <input
         {...restProps}
+        checked={value}
         name={name}
-        className={classNames}
         placeholder={placeholder || label}
         // autoComplete="off"
       />
+
+      {label ? <label htmlFor={name} className={classNames}>{label}</label> : null}
     </div>
   );
 };
 
-export default FormIconInput;
+export default FormIconCheckbox;

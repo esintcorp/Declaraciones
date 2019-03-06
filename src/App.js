@@ -15,6 +15,7 @@ import {
 import logo from './assets/images/logo_transp.png';
 import './App.css';
 import Register from './view/register/Register';
+import Login from './view/login/Login';
 
 
 library.add(faIgloo, faSignInAlt, faEnvelope, faUser, faUnlock, faUniversity, faIdCard,faExclamation)
@@ -30,6 +31,7 @@ class App extends Component {
           <Router>
             <div>
               {/*<Route exact path="/" component={Home} />*/}
+              <Route exact path="/" component={Login} />
               <Route path="/register" component={Register} />
             </div>
           </Router>

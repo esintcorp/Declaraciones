@@ -37,8 +37,8 @@ class Register extends Component {
   handleChange(event) {
     let name = event.target.name,
       value = event.target.value;
-    console.info('event.target.name', name);
-    console.info('event.target.value', value);
+    // console.info('event.target.name', name);
+    // console.info('event.target.value', value);
     this.setState( prevState => ({ user :
         {
           ...prevState.user,
