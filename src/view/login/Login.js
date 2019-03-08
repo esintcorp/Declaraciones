@@ -6,13 +6,13 @@ import '../../App.css';
 import FormIconInput from '../../components/form/FormIconInput';
 import FormIconCheckbox from '../../components/form/FormIconCheckbox';
 import Form from '../../components/form/Form';
-import {iDCardValidator} from '../../utility/IDCardValidator';
+// import {iDCardValidator} from '../../utility/IDCardValidator';
 
-const typeOptions = [
-  { value: 'nat', label: 'Persona Natural' },
-  { value: 'jur', label: 'Persona Jurídica' },
-  { value: 'obl', label: 'Obligada' }
-]
+// const typeOptions = [
+//   { value: 'nat', label: 'Persona Natural' },
+//   { value: 'jur', label: 'Persona Jurídica' },
+//   { value: 'obl', label: 'Obligada' }
+// ]
 
 class Login extends Component {
   constructor(props) {

@@ -20,7 +20,6 @@ const FormIconCheckbox = ({ style, label, name, iconName, placeholder, addClassN
 
   return (
     <div className="App-input" style={style}>
-      <span><FontAwesomeIcon icon={iconName} /></span>
       <input
         {...restProps}
         checked={value}
@@ -28,8 +27,9 @@ const FormIconCheckbox = ({ style, label, name, iconName, placeholder, addClassN
         placeholder={placeholder || label}
         // autoComplete="off"
       />
+      {label && <label htmlFor={name} className={classNames}>{label}</label>}
 
-      {label ? <label htmlFor={name} className={classNames}>{label}</label> : null}
+      {iconName && <span><FontAwesomeIcon icon={iconName} /></span>}
     </div>
   );
 };
