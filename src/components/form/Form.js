@@ -58,7 +58,7 @@ class Form extends Component {
   }
 
   handleSubmit(event) {
-    const { endpoint, body, validationSchema, contentType = 'application/json' } = this.props;
+    const { endpoint, body, validationSchema, contentType = 'application/json', onSuccess = () => {} } = this.props;
 
     event.preventDefault();
 
@@ -76,7 +76,7 @@ class Form extends Component {
             'Content-Type': contentType
           },
           credentials: 'include',
-          body: endpoint === "application/json" ? JSON.stringify(body) : parametrizeJson(body)
+          body: contentType === "application/json" ? JSON.stringify(body) : parametrizeJson(body)
         }).then(response => {
           console.info('response', response)
 
@@ -93,8 +93,10 @@ class Form extends Component {
               } else if (data.message) {
                 this.setState({errors: data})
                 console.error(data.message)
-              } else {
+              } else if (data.token) {
                 console.error("Sorry, your browser does not support Web Storage...");
+              } else {
+                onSuccess()
               }
               this.setState({errors: {}})
             }

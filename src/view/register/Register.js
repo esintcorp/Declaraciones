@@ -44,7 +44,7 @@ class Register extends Component {
           ...prevState.user,
           [name]: value
         }
-      }), () => console.log(this.state.user))
+      })/*, () => console.log(this.state.user)*/)
   }
 
   handleSelectChange(selected) {
@@ -54,10 +54,12 @@ class Register extends Component {
           ...prevState.user,
           type: selected
         }
-      }), () => console.log(this.state.user))
+      }))
   }
 
   render() {
+    const { history } = this.props;
+
     return (
       <Form
         endpoint="register"
@@ -80,6 +82,9 @@ class Register extends Component {
             .length(10, "Cédula debe tener exáctamente ${length} caracteres")
             .required("Cédula es un campo requerido")
         })}
+        onSuccess={() => {
+          history.push("/");
+        }}
         submitButton
       >
         <FormIconInput
