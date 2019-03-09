@@ -1,22 +1,16 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { addClassNames } from '../../utility/Util';
+
 /**
  * Form Input Component with Icon
  * props:
  * ...
  */
 
-const FormIconInput = ({ style, label, name, iconName, placeholder, addClassNames, ...restProps }) => {
-  let classNames = "input-style";
-
-  if (typeof(addClassNames) === "string") {
-    classNames += " " + addClassNames;
-  } else if (addClassNames) {
-    addClassNames.forEach(className => {
-      classNames += " " + className;
-    })
-  }
+const FormIconInput = ({ style, label, name, iconName, placeholder, classNames, ...restProps }) => {
+  const addedClassNames = addClassNames("input-style", classNames);
 
   return (
     <div className="App-input" style={style}>
@@ -25,7 +19,7 @@ const FormIconInput = ({ style, label, name, iconName, placeholder, addClassName
       <input
         {...restProps}
         name={name}
-        className={classNames}
+        className={addedClassNames}
         placeholder={placeholder || label}
         // autoComplete="off"
       />

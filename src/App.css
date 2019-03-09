@@ -9,13 +9,22 @@
   /* animation: App-logo-spin infinite 20s linear; */
   height: 9vmin;
   margin: 20px;
+  align-self: flex-start;
+  /* pointer-events: none; */
+}
+
+.App-login-logo {
+  /* animation: App-logo-spin infinite 20s linear; */
+  height: 15vmin;
+  margin: 50px 0;
+  align-self: center;
   /* pointer-events: none; */
 }
 
 .App-header {
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white; */
@@ -93,9 +102,9 @@ input {
   cursor: inherit;
 }
 
-/* input[type='number'] {
+ input.hide-spin-button {
     -moz-appearance:textfield;
-} */
+}
 
 /* Webkit browsers like Safari and Chrome */
 

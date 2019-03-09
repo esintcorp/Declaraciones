@@ -17,25 +17,17 @@ const iDCardValidator = cedula => {
 }
   }
   return false;
+},
+
+addClassNames = (initialClassName, classNames) => {
+  if (typeof(classNames) === "string") {
+    initialClassName += " " + classNames;
+  } else if (classNames) {
+    classNames.forEach(className => {
+      initialClassName += " " + className;
+    })
+  }
+  return initialClassName;
 };
 
-export { iDCardValidator };
-
-// Function to add to yupString and compare the startTime and endTime fields.
-  // function compareTime(ref, msg) {
-  //   return this.test({
-  //     name: "compareTime",
-  //     exclusive: false,
-  //     message: msg,
-  //     test(timeValue) {
-  //       if (timeValue) {
-  //         const timeRef = this.resolve(ref),
-  //           datetimeRef = new Date(`2000-01-01T${timeRef}Z`),
-  //           datetimeValue = new Date(`2000-01-01T${timeValue}Z`);
-  //         return datetimeRef < datetimeValue;
-  //       }
-  //       return this;
-  //     }
-  //   });
-  // }
-  // addMethod(yupString, "compareTime", compareTime);
+export { iDCardValidator, addClassNames };
