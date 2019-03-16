@@ -9,7 +9,7 @@ import { addClassNames } from '../../utility/Util';
  * ...
  */
 
-const FormIconCheckbox = ({ style, leftLabel, rightLabel, name, iconName, placeholder, classNames, value, ...restProps }) => {
+const FormIconRadio = ({ style, leftLabel, rightLabel, name, iconName, placeholder, classNames,...restProps }) => {
   const addedClassNames = addClassNames("input-style", classNames);
 
   return (
@@ -20,9 +20,10 @@ const FormIconCheckbox = ({ style, leftLabel, rightLabel, name, iconName, placeh
 
       <input
         {...restProps}
-        checked={value}
+        // checked={value}
         name={name}
-        type="checkbox"
+        // value={name}
+        type="radio"
         placeholder={placeholder || rightLabel || leftLabel}
         // autoComplete="off"
       />
@@ -33,4 +34,4 @@ const FormIconCheckbox = ({ style, leftLabel, rightLabel, name, iconName, placeh
   );
 };
 
-export default FormIconCheckbox;
+export default FormIconRadio;

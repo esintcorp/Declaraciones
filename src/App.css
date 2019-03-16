@@ -1,13 +1,16 @@
 .App {
-  /* text-align: center; */
   min-height: 100vh;
-  background-color: #282c34;
+  /* background: #282c34 url("assets/images/app_background.jpg") no-repeat center; */
+  background: linear-gradient(rgba(18, 33, 45, 0.85), rgba(18, 33, 45, 0.85)), url("assets/images/app_background.jpg");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
   color: white;
 }
 
 .App-logo {
   /* animation: App-logo-spin infinite 20s linear; */
-  height: 9vmin;
+  height: 8vmin;
   margin: 20px;
   align-self: flex-start;
   /* pointer-events: none; */
@@ -15,8 +18,8 @@
 
 .App-login-logo {
   /* animation: App-logo-spin infinite 20s linear; */
-  height: 15vmin;
-  margin: 50px 0;
+  height: 11vmin;
+  margin: 130px 0 50px;
   align-self: center;
   /* pointer-events: none; */
 }
@@ -36,7 +39,10 @@
   justify-content: center;
   align-content: space-between;
 }
-
+.App-form {
+  display: flex;
+  flex-direction: column;
+}
 .App-link {
   color: #61dafb;
 }
@@ -46,11 +52,13 @@
   flex-direction: row;
   justify-content: center;
   flex: 1;
+  align-self: center;
   background-color: transparent;
   border-radius: 10px;
   border: 1px solid orange;
   margin: 30px 0;
   padding: 10px;
+  min-width: 100px;
   cursor: pointer;
   color: inherit;
 }
@@ -69,15 +77,12 @@
 .App-input {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  flex: 1;
   margin-top: 40px;
-  /* padding: 10px; */
   border-bottom: 1px white solid;
 }
+
 .input-style {
-  flex: 1;
   padding: 10px 20px;
   outline: none;
 
@@ -87,9 +92,48 @@
   font-size: 13.33px;
 }
 
+.subscription-selected {
+  display: flex;
+  flex-direction: column;
+}
+
+.subscription-selected-banner {
+  background-color: #cbd7e2;
+  color: #3e3844;
+  text-align: center;
+  padding: 3vmin;
+}
+.cost-selected {
+  font-size: 10vmin;
+}
+.description-selected {
+  align-self: center;
+  text-align: center;
+  width: 60vmin;
+  margin: 2vmin;
+}
+
+.flex1 {
+  flex: 1;
+}
+
 .input-style:focus {
   border: 1px solid #2683FF;
   border-radius: 5px;
+}
+
+.subscription-type-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 30px 30px;
+}
+
+.subscription-period-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 30px;
 }
 
 input {

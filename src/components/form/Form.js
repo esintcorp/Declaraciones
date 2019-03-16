@@ -6,7 +6,7 @@ import '../../App.css';
 
 
 const MySubmit = props => (
-  <button className="App-button" onClick={props.onClick}>
+  <button style={props.style} className="App-button" onClick={props.onClick}>
     <span><FontAwesomeIcon icon="sign-in-alt" /></span>
   </button>
 );
@@ -38,6 +38,7 @@ const unflattenYupError = errors => {
 const parametrizeJson = body => {
   return Object.entries(body).map(e => e.join('=')).join('&');
 };
+
 /**
  * Form Component
  * props:
@@ -115,20 +116,18 @@ class Form extends Component {
   }
 
   render() {
-    const { children, submitButton } = this.props;
+    const { children, submitButton, style, submitButtonStyle } = this.props;
 
     return (
       <form
         onSubmit={this.handleSubmit}
-        style={{
-          display: 'flex',
-          flexDirection: "column"
-        }}
+        className="App-form"
+        style={style}
       >
 
         {children}
         {!isEmpty(this.state.errors) && <ErrorDiv errors={this.state.errors}/>}
-        {submitButton && <MySubmit onClick={this.handleSubmit}/>}
+        {submitButton && <MySubmit style={submitButtonStyle} onClick={this.handleSubmit}/>}
       </form>
     );
   }

@@ -5,6 +5,7 @@ import '../../App.css';
 import { isAuthenticated } from '../../components/logic/Authentication';
 import Register from '../../view/register/Register';
 import Login from '../../view/login/Login';
+import Services from '../../view/services/Services';
 
 class AppProvider extends Component {
   render() {
@@ -22,6 +23,7 @@ class AppProvider extends Component {
             {/* Add here Not Authenticated components */}
             <Route exact path="/" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/services" component={Services} />
           </React.Fragment>
         )}
       </Router>

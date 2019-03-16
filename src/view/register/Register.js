@@ -10,7 +10,7 @@ import {iDCardValidator} from '../../utility/Util';
 
 const typeOptions = [
   { value: 'nat', label: 'Persona Natural' },
-  { value: 'jur', label: 'Persona Jurídica' },
+  // { value: 'jur', label: 'Persona Jurídica' },
   { value: 'obl', label: 'Obligada' }
 ]
 
@@ -86,27 +86,32 @@ class Register extends Component {
                 .required("Cédula es un campo requerido")
             })}
             onSuccess={() => {
-              history.push("/");
+              history.push("/services");
             }}
             submitButton
           >
             <FormIconInput
+              style={{justifyContent: 'space-between', flex: 1}}
               name="email"
               type="email"
               placeholder="Correo Electrónico"
               value={this.state.user.email}
               onChange={this.handleChange}
               iconName="envelope"
+              classNames="flex1"
             />
             <FormIconInput
+              style={{justifyContent: 'space-between', flex: 1}}
               name="password"
               type="password"
               placeholder="Contraseña"
               value={this.state.user.password}
               onChange={this.handleChange}
               iconName="unlock"
+              classNames="flex1"
             />
             <FormIconSelect
+              style={{justifyContent: 'space-between', flex: 1}}
               name="type"
               placeholder="Tipo de persona"
               value={this.state.user.type}
@@ -115,24 +120,29 @@ class Register extends Component {
               iconName="university"
             />
             <FormIconInput
+              style={{justifyContent: 'space-between', flex: 1}}
               name="firstName"
               placeholder="Nombres"
               value={this.state.user.firstName}
               onChange={this.handleChange}
               iconName="user"
+              classNames="flex1"
             />
             <FormIconInput
+              style={{justifyContent: 'space-between', flex: 1}}
               name="lastName"
               placeholder="Apellidos"
               value={this.state.user.lastName}
               onChange={this.handleChange}
               iconName="user"
+              classNames="flex1"
             />
             <FormIconInput
+              style={{justifyContent: 'space-between', flex: 1}}
               name="idCard"
               type="number"
               min="0"
-              classNames="hide-spin-button"
+              classNames={["hide-spin-button", "flex1"]}
               placeholder="Cédula de identidad"
               value={this.state.user.idCard}
               onChange={this.handleChange}

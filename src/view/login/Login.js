@@ -13,11 +13,13 @@ class Login extends Component {
     this.state = {
       user: {
         password: "",
-        userId: ""
+        userId: "",
+        rememberMe: false
       }
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleCheckChange = this.handleCheckChange.bind(this);
   }
 
   handleChange(event) {
@@ -29,6 +31,19 @@ class Login extends Component {
         {
           ...prevState.user,
           [name]: value
+        }
+      })
+    )
+  }
+
+  handleCheckChange(event) {
+    let checked = event.target.checked;
+
+    this.setState( prevState => ({
+      user :
+        {
+          ...prevState.user,
+          rememberMe: checked
         }
       })
     )
@@ -68,14 +83,13 @@ class Login extends Component {
             />
             <FormIconCheckbox
               style={{border: "none"}}
-              name="idCard"
-              type="checkbox"
+              name="rememberMe"
               // min="0"
               // classNames="hide-spin-button"
               // placeholder="Cédula de identidad"
-              value={this.state.user.rememberme || false}
-              label="¿Recordar sesión?"
-              onChange={this.handleChange}
+              value={this.state.user.rememberMe || false}
+              rightLabel="¿Recordar sesión?"
+              onChange={this.handleCheckChange}
               // iconName="id-card"
             />
 
