@@ -77,7 +77,7 @@ console.info("hola", name, checked)
         <Header classNames="App-logo" />
         <section className="App-section">
           <Form
-            style={{flex: 1, margin: 20}}
+            style={{flex: 1}}
             endpoint="subscription"
             contentType="application/json"
             body={this.state}
@@ -150,13 +150,16 @@ console.info("hola", name, checked)
               />
 
             </div>
-            <div className="subscription-selected">
-              <div className="subscription-selected-banner">
-                <div className="cost-selected">{costSelected}</div>
-                <div className="period-selected">{periodNameSelected}</div>
+            {
+              periodSelected &&
+              <div className="subscription-selected">
+                <div className="subscription-selected-banner">
+                  <div className="cost-selected">{costSelected}</div>
+                  <div className="period-selected">{periodNameSelected}</div>
+                </div>
+                <div className="description-selected">{descrp}</div>
               </div>
-              <div className="description-selected">{descrp}</div>
-            </div>
+            }
 
           </Form>
 
