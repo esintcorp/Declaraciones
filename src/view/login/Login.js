@@ -50,9 +50,10 @@ class Login extends Component {
   }
 
   render() {
+    const { history } = this.props;
     return (
       <React.Fragment>
-        <Header classNames="App-login-logo" />
+        <Header classNames="App-login-logo"/>
         <section className="App-section">
           <Form
             endpoint="login"
@@ -63,6 +64,11 @@ class Login extends Component {
                 .email("Correo Electrónico debe ser válido"),
               password: yupString().required("Contraseña es un campo requerido")
             })}
+            onSuccess={data=> {
+              history.push({
+                pathname: "/home"
+              });
+            }}
             submitButton
           >
             <FormIconInput
@@ -82,7 +88,7 @@ class Login extends Component {
               iconName="unlock"
             />
             <FormIconCheckbox
-              style={{border: "none"}}
+              style={{border: "none", marginTop: 0}}
               name="rememberMe"
               // min="0"
               // classNames="hide-spin-button"

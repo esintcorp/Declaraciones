@@ -8,14 +8,20 @@ import {
   faUnlock,
   faUniversity,
   faIdCard,
-  faExclamation
+  faIdCardAlt,
+  faExclamation,
+  faCheckSquare,
+  faClipboardCheck,
+  faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
 
 import './App.css';
 import AppProvider from './components/logic/AppProvider';
 
 
-library.add(faIgloo, faSignInAlt, faEnvelope, faUser, faUnlock, faUniversity, faIdCard,faExclamation)
+library.add(faIgloo, faSignInAlt, faEnvelope, faUser, faUnlock, faUniversity,
+  faIdCard, faIdCardAlt, faExclamation, faCheckSquare, faClipboardCheck,
+  faSignOutAlt)
 
 class App extends Component {
   render() {

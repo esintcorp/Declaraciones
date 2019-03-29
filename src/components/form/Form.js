@@ -3,13 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { isEmpty } from 'lodash';
 
 import '../../App.css';
+import FormIconButton from './FormIconButton';
 
-
-const MySubmit = props => (
-  <button style={props.style} className="App-button" onClick={props.onClick}>
-    <span><FontAwesomeIcon icon="sign-in-alt" /></span>
-  </button>
-);
 const ErrorDiv = props => (
   <div className="Form-errors-div" >
     <span><FontAwesomeIcon icon="exclamation" /></span>
@@ -83,7 +78,11 @@ class Form extends Component {
 
           response.json().then(data => {
             if (!response.ok || response.status !== 200) {
-              this.setState({errors: unflattenYupError(data.errors)})
+              if (data.errors) {
+                this.setState({errors: unflattenYupError(data.errors)})
+              } else if (data.error) {
+                this.setState({errors: {"message": data.message}})
+              }
               console.info("object", this.state.errors, data)
             } else {
               console.log("Successful", data);
@@ -91,13 +90,14 @@ class Form extends Component {
                 // Store
                 localStorage.setItem("csrfToken", data.token);
                 console.info('TOKEEEENNNN', localStorage.getItem("csrfToken"))
+                onSuccess(data);
               } else if (data.message) {
                 this.setState({errors: data})
                 console.error(data.message)
               } else if (data.token) {
                 console.error("Sorry, your browser does not support Web Storage...");
               } else {
-                onSuccess()
+                onSuccess(data);
               }
               this.setState({errors: {}})
             }
@@ -127,7 +127,7 @@ class Form extends Component {
 
         {children}
         {!isEmpty(this.state.errors) && <ErrorDiv errors={this.state.errors}/>}
-        {submitButton && <MySubmit style={submitButtonStyle} onClick={this.handleSubmit}/>}
+        {submitButton && <FormIconButton style={submitButtonStyle} onClick={this.handleSubmit}/>}
       </form>
     );
   }

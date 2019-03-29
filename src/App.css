@@ -33,6 +33,11 @@
   color: white; */
 }
 
+.header-logout {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .App-section {
   display: flex;
   /* flex: 1; */
@@ -90,6 +95,8 @@
   color: white;
   font-family: Arial;
   font-size: 13.33px;
+  border: 1px solid transparent;
+  border-radius: 5px;
 }
 
 .subscription-selected {
@@ -104,6 +111,10 @@
   padding: 3vmin;
   display: flex;
   flex-direction: column;
+
+  animation-duration: 1s;
+  animation-name: slidein;
+
 }
 .cost-selected {
   font-size: 8vmin;
@@ -147,6 +158,44 @@
   margin: 30px;
 }
 
+.payment-div {
+  display: flex;
+  flex-direction: row;
+  margin: 30px;
+  justify-content: center;
+}
+
+.payment-card {
+  width: 60vmin;
+  height: 37vmin;
+  margin: 5vmin;
+  box-shadow: 0px 0px 20px aliceblue;
+  border-radius: 2vmin;
+}
+
+.payment-input {
+  padding: 10px;
+  margin: 5px 0;
+  background: rgba(115, 115, 125, 0.90);
+  border-radius: 5px;
+}
+
+.payment-input::placeholder {
+  color: #b9c0c3;
+}
+
+.terms-div {
+  /* display: flex; */
+  /* flex-direction: column; */
+  margin: 0 40px;
+  padding: 10px 40px;
+}
+
+.title {
+  text-align: center;
+  font-size: x-large;
+}
+
 input {
   /* margin-top: 30px;
   height: 32px;
@@ -157,7 +206,7 @@ input {
   cursor: inherit;
 }
 
- input.hide-spin-button {
+input.hide-spin-button {
     -moz-appearance:textfield;
 }
 
@@ -175,5 +224,14 @@ input.hide-spin-button::-webkit-outer-spin-button {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: 0%;
   }
 }

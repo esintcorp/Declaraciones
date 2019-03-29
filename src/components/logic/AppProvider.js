@@ -6,6 +6,9 @@ import { isAuthenticated } from '../../components/logic/Authentication';
 import Register from '../../view/register/Register';
 import Login from '../../view/login/Login';
 import Services from '../../view/services/Services';
+import TermsAndConditions from '../../view/terms/TermsAndConditions';
+import Payment from '../../view/payment/Payment';
+import Home from '../../view/home/Home';
 
 class AppProvider extends Component {
   render() {
@@ -16,6 +19,7 @@ class AppProvider extends Component {
           isAuthenticated() && (
             <React.Fragment>
               {/* Add here Authenticated components */}
+              <Route exact path="/home" component={Home} />
             </React.Fragment>
           )
         ) || (
@@ -24,6 +28,8 @@ class AppProvider extends Component {
             <Route exact path="/" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/services" component={Services} />
+            <Route path="/terms" component={TermsAndConditions} />
+            <Route path="/payment" component={Payment} />
           </React.Fragment>
         )}
       </Router>

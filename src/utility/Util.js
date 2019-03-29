@@ -14,7 +14,7 @@ const iDCardValidator = cedula => {
           return valorPrevio - (valorActual * (2 - indice % 2)) % 9 - (valorActual === 9) * 9;
         }, 1000) % 10;
       return digito_calculado === digito_verificador;
-}
+    }
   }
   return false;
 },

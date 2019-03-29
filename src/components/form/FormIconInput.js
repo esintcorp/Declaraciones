@@ -15,7 +15,7 @@ const FormIconInput = ({ style, label, name, iconName, placeholder, classNames, 
   return (
     <div className="App-input" style={style}>
       {label ? <label htmlFor={name}>{label}</label> : null}
-      <span><FontAwesomeIcon icon={iconName} /></span>
+      {iconName && <span><FontAwesomeIcon icon={iconName} /></span>}
       <input
         {...restProps}
         name={name}

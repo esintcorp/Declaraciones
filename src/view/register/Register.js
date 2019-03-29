@@ -6,7 +6,7 @@ import Header from '../../components/logic/Header';
 import FormIconInput from '../../components/form/FormIconInput';
 import FormIconSelect from '../../components/form/FormIconSelect';
 import Form from '../../components/form/Form';
-import {iDCardValidator} from '../../utility/Util';
+import { iDCardValidator } from '../../utility/Util';
 
 const typeOptions = [
   { value: 'nat', label: 'Persona Natural' },
@@ -23,7 +23,7 @@ class Register extends Component {
         password: "",
         type: "",
         idCard: "",
-        rucNumber: "111",
+        rucNumber: "",
         firstName: "",
         lastName: "",
         email: ""
@@ -83,10 +83,19 @@ class Register extends Component {
                   value => iDCardValidator(value)
                 )
                 .length(10, params => `Cédula debe tener exáctamente ${params.length} caracteres`)
-                .required("Cédula es un campo requerido")
+                .required("Cédula es un campo requerido"),
+              rucNumber: yupString().nullable()/*.when('idCard', (idCard, schema) => {
+                return idCard ? schema : schema.required("Apellidos es un campo requerido");
+              })*/
             })}
-            onSuccess={() => {
-              history.push("/services");
+            onSuccess={data=> {
+              history.push({
+                pathname: "/services",
+                state: {
+                  dataPeriod: data,
+                  user: this.state.user
+                }
+              });
             }}
             submitButton
           >
@@ -147,6 +156,17 @@ class Register extends Component {
               value={this.state.user.idCard}
               onChange={this.handleChange}
               iconName="id-card"
+            />
+            <FormIconInput
+              style={{justifyContent: 'space-between', flex: 1}}
+              name="rucNumber"
+              type="number"
+              min="0"
+              classNames={["hide-spin-button", "flex1"]}
+              placeholder="Número de RUC"
+              value={this.state.user.rucNumber}
+              onChange={this.handleChange}
+              iconName="id-card-alt"
             />
 
           </Form>
