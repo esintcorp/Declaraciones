@@ -8,6 +8,7 @@ import Login from '../../view/login/Login';
 import Services from '../../view/services/Services';
 import TermsAndConditions from '../../view/terms/TermsAndConditions';
 import Payment from '../../view/payment/Payment';
+import PaymentResult from '../../view/payment/PaymentResult';
 import Home from '../../view/home/Home';
 
 class AppProvider extends Component {
@@ -30,6 +31,7 @@ class AppProvider extends Component {
             <Route path="/services" component={Services} />
             <Route path="/terms" component={TermsAndConditions} />
             <Route path="/payment" component={Payment} />
+            <Route path="/payment-result" component={PaymentResult} />
           </React.Fragment>
         )}
       </Router>

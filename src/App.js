@@ -12,7 +12,11 @@ import {
   faExclamation,
   faCheckSquare,
   faClipboardCheck,
-  faSignOutAlt
+  faSignOutAlt,
+  faCheckCircle,
+  // faFacebookF,
+  // faWhatsapp,
+  // faInstagram
 } from '@fortawesome/free-solid-svg-icons';
 
 import './App.css';
@@ -21,7 +25,9 @@ import AppProvider from './components/logic/AppProvider';
 
 library.add(faIgloo, faSignInAlt, faEnvelope, faUser, faUnlock, faUniversity,
   faIdCard, faIdCardAlt, faExclamation, faCheckSquare, faClipboardCheck,
-  faSignOutAlt)
+  faSignOutAlt, faCheckCircle
+  // , faFacebookF, faWhatsapp, faInstagram
+)
 
 class App extends Component {
   render() {

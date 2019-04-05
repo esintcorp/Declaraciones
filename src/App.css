@@ -165,6 +165,29 @@
   justify-content: center;
 }
 
+.payment-result {
+  position: absolute;
+  top: 0;
+  left: auto;
+  background-color: #d2e0f7ab;
+  height: 100%;
+  width: 100vmin;
+  text-align: center;
+  color: rgb(16, 60, 95);
+}
+
+.payment-result-img {
+  height: 50%;
+  background-color: blue;
+}
+
+.social {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0 32vmin;
+}
+
 .payment-card {
   width: 60vmin;
   height: 37vmin;

@@ -62,7 +62,7 @@ class Payment extends Component {
             })}
             submitButtonStyle={{width: '20vmin'}}
             onSuccess={data => {
-              history.push("/");
+              history.push("/payment-result");
             }}
             submitButton
           >
