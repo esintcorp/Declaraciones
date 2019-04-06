@@ -114,8 +114,8 @@
 
   animation-duration: 1s;
   animation-name: slidein;
-
 }
+
 .cost-selected {
   font-size: 8vmin;
   background-color: cornflowerblue;
@@ -169,16 +169,16 @@
   position: absolute;
   top: 0;
   left: auto;
-  background-color: #d2e0f7ab;
+  /* background-color: #d2e0f7ab; */
   height: 100%;
   width: 100vmin;
   text-align: center;
-  color: rgb(16, 60, 95);
+  /* color: #FFF; rgb(16, 60, 95); */
 }
 
 .payment-result-img {
   height: 50%;
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 .social {
@@ -186,6 +186,25 @@
   flex-direction: row;
   justify-content: space-around;
   padding: 0 32vmin;
+}
+
+.payment-OK-img {
+  /* background-color: red; */
+  height: 100%;
+  animation-duration: 0.5s;
+  animation-name: slidein;
+}
+
+.to-big-green {
+  color: #00d256;
+  animation-duration: 0.5s;
+  animation-name: toBig;
+}
+
+.to-big-red {
+  color: #ff2727;
+  animation-duration: 0.5s;
+  animation-name: toBig;
 }
 
 .payment-card {
@@ -256,5 +275,14 @@ input.hide-spin-button::-webkit-outer-spin-button {
   }
   to {
     margin-left: 0%;
+  }
+}
+
+@keyframes toBig {
+  from {
+    font-size: 1em;
+  }
+  to {
+    font-size: 6em;
   }
 }
