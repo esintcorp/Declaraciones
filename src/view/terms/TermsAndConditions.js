@@ -3,10 +3,15 @@ import React, { Component } from 'react';
 import '../../App.css';
 import Header from '../../components/logic/Header';
 import FormIconButton from '../../components/form/FormIconButton';
+import FormIconCheckbox from '../../components/form/FormIconCheckbox';
 
 class TermsAndConditions extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      acceptance: false
+    };
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -14,15 +19,20 @@ class TermsAndConditions extends Component {
     const { history, location } = this.props,
       subscription = location.state.subscription;
 
-    history.push({
-      pathname: "/payment",
-      state: {
-        subscription: subscription
-      }
-    });
+    if (this.state.acceptance) {
+      history.push({
+        pathname: "/payment",
+        state: {
+          subscription: subscription
+        }
+      });
+    } else {
+      history.push({pathname: "/"});
+    }
   }
 
   render() {
+
     return (
       <React.Fragment>
         <Header classNames="App-logo" />
@@ -151,7 +161,19 @@ class TermsAndConditions extends Component {
             <p>The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.</p>
 
             <p>As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.</p>
-            <FormIconButton style={{width: '23vmin'}} iconName="clipboard-check" onClick={this.handleSubmit} iconSize="2x"/>
+
+            <FormIconCheckbox
+              style={{border: "none", margin: '0 20px'}}
+              value={this.state.acceptance}
+              classNames="input-orange"
+              rightLabel="He leído y acepto los términos"
+              onChange={() => this.setState({acceptance: !this.state.acceptance})}
+            />
+
+            <FormIconButton
+              style={{width: '23vmin'}}
+              onClick={this.handleSubmit}
+            />
           </div>
         </section>
       </React.Fragment>

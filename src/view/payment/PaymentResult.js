@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Header from '../../components/logic/Header';
 import checkMailImage from '../../assets/images/check-inbox.png';

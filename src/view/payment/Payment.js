@@ -82,9 +82,8 @@ class Payment extends Component {
               <div className='payment-data'>
                 <FormIconInput
                   label='Nombre de la tarjeta'
-                  style={inputStyle}
+                  style={{...inputStyle, marginTop: 0}}
                   name='cardName'
-                  // type="email"
                   placeholder='Javier Salazar'
                   value={this.state.payment.cardName}
                   onChange={this.handleChange}
@@ -94,7 +93,6 @@ class Payment extends Component {
                   label='Número de la tarjeta'
                   style={inputStyle}
                   name="cardNumber"
-                  // type="email"
                   placeholder="1234-5678-xxxxxx"
                   value={this.state.payment.cardNumber}
                   onChange={this.handleChange}
@@ -105,16 +103,15 @@ class Payment extends Component {
                   style={inputStyle}
                   name="expirationDate"
                   type="date"
-                  placeholder="MM/YY"
+                  // placeholder="MM/YY"
                   value={this.state.payment.expirationDate}
                   onChange={this.handleChange}
-                  classNames='payment-input'
+                  classNames={['payment-input', 'input-width-88']}
                 />
                 <FormIconInput
                   label='CVC / CVV'
                   style={inputStyle}
                   name="cvv"
-                  // type="email"
                   placeholder="1234"
                   value={this.state.payment.cvv}
                   onChange={this.handleChange}

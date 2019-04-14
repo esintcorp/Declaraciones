@@ -144,6 +144,10 @@
   border-radius: 5px;
 }
 
+.input-orange {
+  color: orange;
+}
+
 .subscription-type-div {
   display: flex;
   flex-direction: row;
@@ -177,8 +181,9 @@
 }
 
 .payment-result-img {
-  height: 50%;
+  /* height: 50%; */
   /* background-color: blue; */
+  margin: 40px;
 }
 
 .social {
@@ -190,7 +195,7 @@
 
 .payment-OK-img {
   /* background-color: red; */
-  height: 100%;
+  height: 50vmin;
   animation-duration: 0.5s;
   animation-name: slidein;
 }
@@ -215,11 +220,19 @@
   border-radius: 2vmin;
 }
 
+.payment-data {
+  margin: 5vmin;
+}
+
 .payment-input {
   padding: 10px;
   margin: 5px 0;
   background: rgba(115, 115, 125, 0.90);
   border-radius: 5px;
+}
+
+.input-width-88 {
+  width: 88%;
 }
 
 .payment-input::placeholder {
