@@ -7,6 +7,23 @@ import FormIconButton from '../form/FormIconButton';
 import { getToken } from './Authentication';
 
 class Header extends Component {
+  profileFunction = () => {
+    const { history } = this.props;
+// console.info(history)
+    // history.push('/profile')
+    fetch('http://localhost:8050/getUser', {
+      method: "POST",
+      mode: 'cors',
+      headers: {
+        // 'Accept': 'application/json',
+        // 'Content-Type': contentType
+        'X-CSRF-TOKEN': getToken()
+      },
+      credentials: 'include'
+    }).then(response => {
+      console.info(response)
+    });
+  }
 
   logoutFunction = () => {
     const { afterLogout } = this.props;
@@ -24,23 +41,29 @@ class Header extends Component {
     }).then(response => {
       console.info('response', response)
 
-      if (response && response.ok) {
+      // if (response && response.ok) {
         localStorage.setItem("csrfToken", undefined);
         afterLogout();
-        console.info(getToken)
-      }
+        console.info(getToken())
+      // }
     });
   }
 
   render() {
-    const { classNames, logout } = this.props;
+    const { classNames, logout, profile } = this.props;
     const addedClassNames = addClassNames("App-logo", classNames),
       headerClass = logout ? 'App-header header-logout' : 'App-header';
     return (
       <header className={headerClass} >
         <img src={logo} className={addedClassNames} alt="logo" />
+        <div style={{flex: 1}} />
+        {profile && <FormIconButton
+          style={{minWidth: '5vmin', margin: '0 0 0 15px', padding: 5, flex: 0}}
+          iconName="user-circle"
+          onClick={this.profileFunction}
+        />}
         {logout && <FormIconButton
-          style={{width: '5vmin', margin: '0 15px', padding: 5, flex: 0}}
+          style={{minWidth: '5vmin', margin: '0 20px 0 15px', padding: 5, flex: 0}}
           iconName="sign-out-alt"
           onClick={this.logoutFunction}
         />}

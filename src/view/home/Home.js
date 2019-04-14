@@ -28,9 +28,16 @@ class Home extends Component {
   }
 
   render() {
+    const { history } = this.props;
     return (
       <React.Fragment>
-        <Header classNames="App-logo" logout afterLogout={this.handleLogout}/>
+        <Header
+          classNames="App-logo"
+          afterLogout={this.handleLogout}
+          history={history}
+          logout
+          profile
+        />
         <section className="App-section">
           <div className="terms-div">
 
