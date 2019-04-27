@@ -25,6 +25,7 @@ class Home extends Component {
     history.push({
       pathname: "/"
     });
+    window.location.reload();
   }
 
   render() {

@@ -68,6 +68,7 @@ class Login extends Component {
               history.push({
                 pathname: "/home"
               });
+              window.location.reload();
             }}
             submitButton
           >
