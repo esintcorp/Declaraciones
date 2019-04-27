@@ -8,9 +8,6 @@ import { getToken } from './Authentication';
 
 class Header extends Component {
   profileFunction = () => {
-    const { history } = this.props;
-// console.info(history)
-    // history.push('/profile')
     fetch('http://localhost:8050/getUser', {
       method: "POST",
       mode: 'cors',
@@ -42,7 +39,7 @@ class Header extends Component {
       console.info('response', response)
 
       // if (response && response.ok) {
-        localStorage.setItem("csrfToken", undefined);
+        localStorage.removeItem("csrfToken");
         afterLogout();
         console.info(getToken())
       // }

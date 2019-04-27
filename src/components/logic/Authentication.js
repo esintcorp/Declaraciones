@@ -1,6 +1,6 @@
 const isAuthenticated = () => {
   if (typeof(Storage) !== 'undefined') {
-    if (localStorage.getItem("csrfToken") !== 'undefined') {
+    if (localStorage.getItem("csrfToken")) {
       console.info('TOKEEEENNNN', localStorage.getItem("csrfToken"))
       return true;
     }
