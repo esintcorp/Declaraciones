@@ -18,7 +18,23 @@ class Header extends Component {
       },
       credentials: 'include'
     }).then(response => {
-      console.info(response)
+      console.info('response', response)
+      response.json().then(data => {
+        if (!response.ok || response.status !== 200) {
+          console.error(response)
+        } else {
+          console.info("object", data)
+        }
+      }).catch(errors => {
+        console.error(errors)
+      })
+      // if (response && response.ok) {
+        // localStorage.setItem("csrfToken", undefined);
+        // afterLogout();
+        // console.info(getToken())
+      // }
+    }).catch(errorfetch => {
+      console.error(errorfetch)
     });
   }
 
