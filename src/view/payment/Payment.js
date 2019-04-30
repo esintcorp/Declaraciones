@@ -44,7 +44,7 @@ class Payment extends Component {
         marginTop: 10,
         border: 'none'
       },
-      subscription = location.state.subscription;
+      subscription = location.state && location.state.subscription;
 
     return (
       <React.Fragment>
@@ -53,7 +53,11 @@ class Payment extends Component {
           <Form
             style={{flex: 0.7}}
             endpoint="payment"
-            body={{...this.state.payment, status: 'active', user: subscription.user}}
+            body={{
+              ...this.state.payment,
+              status: 'active',
+              user: subscription && subscription.user
+            }}
             validationSchema={yupObject().shape({
               cardName: yupString().required("Ingrese el nombre de su tarjeta"),
               cardNumber: yupString().required("Ingrese el número de su tarjeta"),

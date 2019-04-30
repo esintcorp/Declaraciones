@@ -8,34 +8,41 @@ import { getToken } from './Authentication';
 
 class Header extends Component {
   profileFunction = () => {
-    fetch('http://localhost:8050/getUser', {
-      method: "POST",
-      mode: 'cors',
-      headers: {
-        // 'Accept': 'application/json',
-        // 'Content-Type': contentType
-        'X-CSRF-TOKEN': getToken()
-      },
-      credentials: 'include'
-    }).then(response => {
-      console.info('response', response)
-      response.json().then(data => {
-        if (!response.ok || response.status !== 200) {
-          console.error(response)
-        } else {
-          console.info("object", data)
-        }
-      }).catch(errors => {
-        console.error(errors)
-      })
-      // if (response && response.ok) {
-        // localStorage.setItem("csrfToken", undefined);
-        // afterLogout();
-        // console.info(getToken())
-      // }
-    }).catch(errorfetch => {
-      console.error(errorfetch)
+    const { history } = this.props;
+
+    console.info(JSON.parse(sessionStorage.getItem('user')), history)
+    history.push({
+      pathname: "/profile"
     });
+    // fetch('http://localhost:8050/getUser', {
+    //   method: "POST",
+    //   mode: 'cors',
+    //   headers: {
+    //     // 'Accept': 'application/json',
+    //     // 'Content-Type': contentType
+    //     'X-CSRF-TOKEN': getToken()
+    //   },
+    //   credentials: 'include'
+    // }).then(response => {
+    //   console.info('response', response)
+    //   response.json().then(data => {
+    //     if (!response.ok || response.status !== 200) {
+    //       console.error(response)
+    //     } else {
+    //       console.info("object", data)
+    //       // sessionStorage.setItem('user', data)
+    //     }
+    //   }).catch(errors => {
+    //     console.error(errors)
+    //   })
+    //   // if (response && response.ok) {
+    //     // localStorage.setItem("csrfToken", undefined);
+    //     // afterLogout();
+    //     // console.info(getToken())
+    //   // }
+    // }).catch(errorfetch => {
+    //   console.error(errorfetch)
+    // });
   }
 
   logoutFunction = () => {

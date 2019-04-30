@@ -9,6 +9,7 @@ import TermsAndConditions from '../../view/terms/TermsAndConditions';
 import Payment from '../../view/payment/Payment';
 import PaymentResult from '../../view/payment/PaymentResult';
 import Home from '../../view/home/Home';
+import Profile from '../../view/profile/Profile';
 import { getToken } from './Authentication';
 
 class AppProvider extends Component {
@@ -39,6 +40,7 @@ class AppProvider extends Component {
           console.info('hola')
         } else {
           console.info("object", data)
+          sessionStorage.setItem('user', JSON.stringify(data))
           this.setState({ sessionInfo: data });
         }
       }).catch(errors => {
@@ -61,8 +63,8 @@ class AppProvider extends Component {
           this.state.sessionInfo.firstName ? (
             <React.Fragment>
               {/* Add here Authenticated components */}
-              <Route exact path="/home" component={Home} />
               <Route exact path="/" component={Home} />
+              <Route path="/profile" component={Profile} />
             </React.Fragment>
           ) : (
             <React.Fragment>

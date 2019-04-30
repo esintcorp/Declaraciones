@@ -74,24 +74,26 @@ const colourStyles = {
  * props:
  * ...
  */
-const FormIconSelect = props => (
-  <div className="App-input">
-    {props.label ? <label htmlFor={props.name}>{props.label}</label> : null}
-    <span><FontAwesomeIcon icon={props.iconName} /></span>
-    <div style={{flex:1}}>
-
-      <Select
-        name={props.name}
-        options={props.options}
-        // value={props.value}
-        onChange={selected => {
-          props.onChange(selected && selected.value)
-        }}
-        placeholder={props.placeholder}
-        styles={colourStyles}
-      />
+const FormIconSelect = props => {
+  const selectedValue = props.value && props.options.find(option => option.value === props.value);
+  return (
+    <div className="App-input">
+      {props.label ? <label htmlFor={props.name}>{props.label}</label> : null}
+      {props.iconName && <span><FontAwesomeIcon icon={props.iconName} /></span>}
+      <div style={{flex:1}}>
+        <Select
+          name={props.name}
+          options={props.options}
+          value={selectedValue || null}
+          onChange={selected => {
+            props.onChange(selected && selected.value)
+          }}
+          placeholder={props.placeholder}
+          styles={colourStyles}
+        />
+      </div>
     </div>
-  </div>
-);
+  )
+};
 
 export default FormIconSelect;

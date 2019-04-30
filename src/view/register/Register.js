@@ -6,13 +6,7 @@ import Header from '../../components/logic/Header';
 import FormIconInput from '../../components/form/FormIconInput';
 import FormIconSelect from '../../components/form/FormIconSelect';
 import Form from '../../components/form/Form';
-import { iDCardValidator } from '../../utility/Util';
-
-const typeOptions = [
-  { value: 'nat', label: 'Persona Natural' },
-  // { value: 'jur', label: 'Persona Jurídica' },
-  { value: 'obl', label: 'Obligada' }
-]
+import { iDCardValidator, personTypeOptions } from '../../utility/Util';
 
 class Register extends Component {
   constructor(props) {
@@ -65,6 +59,7 @@ class Register extends Component {
         <Header classNames="App-logo" />
         <section className="App-section">
           <Form
+            style={{width: '60vmin'}}
             endpoint="register"
             body={this.state.user}
             validationSchema={yupObject().shape({
@@ -124,7 +119,7 @@ class Register extends Component {
               name="type"
               placeholder="Tipo de persona"
               value={this.state.user.type}
-              options={typeOptions}
+              options={personTypeOptions}
               onChange={this.handleSelectChange}
               iconName="university"
             />

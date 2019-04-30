@@ -30,4 +30,14 @@ addClassNames = (initialClassName, classNames) => {
   return initialClassName;
 };
 
-export { iDCardValidator, addClassNames };
+const personTypeOptions = [
+  { value: 'nat', label: 'Persona Natural' },
+  // { value: 'jur', label: 'Persona Jurídica' },
+  { value: 'obl', label: 'Obligada' }
+]
+
+export {
+  iDCardValidator,
+  addClassNames,
+  personTypeOptions
+};

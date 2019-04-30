@@ -56,6 +56,7 @@ class Login extends Component {
         <Header classNames="App-login-logo"/>
         <section className="App-section">
           <Form
+            style={{width: '40vmin', minWidth: '40vmin'}}
             endpoint="login"
             contentType="application/x-www-form-urlencoded"
             body={this.state.user}
@@ -66,7 +67,7 @@ class Login extends Component {
             })}
             onSuccess={data=> {
               history.push({
-                pathname: "/home"
+                pathname: "/"
               });
               window.location.reload();
             }}
