@@ -74,7 +74,7 @@ class Register extends Component {
                 // some code: https://www.jybaro.com/blog/cedula-de-identidad-ecuatoriana/
                 .test(
                   "idCardValidator",
-                  params => `${params.path} no es una cédula válida`,
+                  params => `${params.value} no es una cédula válida`,
                   value => iDCardValidator(value)
                 )
                 .length(10, params => `Cédula debe tener exáctamente ${params.length} caracteres`)

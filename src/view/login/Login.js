@@ -80,6 +80,7 @@ class Login extends Component {
               value={this.state.user.userId}
               onChange={this.handleChange}
               iconName="envelope"
+              classNames="flex1"
             />
             <FormIconInput
               name="password"
@@ -88,6 +89,7 @@ class Login extends Component {
               value={this.state.user.password}
               onChange={this.handleChange}
               iconName="unlock"
+              classNames="flex1"
             />
             <FormIconCheckbox
               style={{border: "none", marginTop: 0}}

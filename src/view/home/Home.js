@@ -39,9 +39,20 @@ class Home extends Component {
           logout
           profile
         />
-        <section className="App-section">
+        <section className="App-section App-section-authenticated">
+        <aside style={{
+          display: 'flex',
+          flexDirection: 'column',
+          // backgroundColor: 'red',
+          width: '300vmin',
+          float: 'left',
+          minWidth: 200
+        }}>
+          <div style={{border: 'solid blue 1px', height: 40}}>IVA</div>
+          <div style={{border: 'solid blue 1px', height: 40}}>Anexos</div>
+          <div style={{border: 'solid blue 1px', height: 40}}>Renta</div>
+        </aside>
           <div className="terms-div">
-
             <h2><strong>Lorem Ipsum</strong></h2>
 
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac elit non risus congue aliquam. Nunc vitae arcu neque. Sed pellentesque at dolor sit amet gravida. Cras lorem sem, accumsan eget eros id, malesuada efficitur felis. Cras tellus urna, accumsan in velit vitae, consequat posuere erat. Phasellus ut quam sit amet lectus condimentum condimentum. Aenean sit amet erat non augue fermentum vestibulum at at diam. Aenean vitae felis sed purus pulvinar iaculis. Nullam placerat leo in hendrerit suscipit.</p>
