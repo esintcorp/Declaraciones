@@ -44,6 +44,12 @@
   justify-content: center;
   align-content: space-between;
 }
+
+.App-section-authenticated {
+  background-color: white;
+  color: black;
+}
+
 .App-form {
   display: flex;
   flex-direction: column;
@@ -259,6 +265,39 @@
   background: rgba(115, 115, 125, 0.90);
   border-radius: 5px;
   width: 30vmin;
+}
+
+.item {
+  display: flex;
+  /* border: solid blue 1px; */
+  background-image: linear-gradient(rgba(18, 33, 45, 0.85), rgba(18, 33, 45, 0.85));
+  /* height: 30px; */
+  padding: 10px 30px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.item:focus {
+  outline: 0;
+}
+
+.item:hover {
+  background-image: linear-gradient(rgba(51, 104, 148, 0.66), rgba(241, 249, 255, 0.85));
+  color: black;
+}
+
+.quest {
+  border: 1px solid grey;
+}
+
+.home-div {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* margin: 0 40px; */
+  padding: 10px 40px;
 }
 
 input {
