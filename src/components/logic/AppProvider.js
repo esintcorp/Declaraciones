@@ -11,6 +11,7 @@ import PaymentResult from '../../view/payment/PaymentResult';
 import Home from '../../view/home/Home';
 import Profile from '../../view/profile/Profile';
 import { getToken } from './Authentication';
+import { offlinePathnamesList, onlinePathnamesList } from '../../utility/Util';
 
 class AppProvider extends Component {
 
@@ -37,8 +38,19 @@ class AppProvider extends Component {
       console.info('response', response)
       response.json().then(data => {
         if (!response.ok || response.status !== 200) {
-          console.info('hola')
+          console.info('hola', offlinePathnamesList)
+
+          if (!offlinePathnamesList.find(pathname => pathname === window.location.pathname)) {
+            console.info( 'path not found' )
+            window.location.assign('http://localhost:3000')
+          }
+
         } else {
+          console.info('hola', onlinePathnamesList)
+          if (!onlinePathnamesList.find(pathname => pathname === window.location.pathname)) {
+            console.info( 'path not found' )
+            window.location.assign('http://localhost:3000')
+          }
           console.info("object", data)
           sessionStorage.setItem('user', JSON.stringify(data))
           this.setState({ sessionInfo: data });
@@ -63,7 +75,7 @@ class AppProvider extends Component {
           this.state.sessionInfo.firstName ? (
             <React.Fragment>
               {/* Add here Authenticated components */}
-              <Route exact path="/" component={Home} />
+              <Route path="/" component={Home} />
               <Route path="/profile" component={Profile} />
             </React.Fragment>
           ) : (

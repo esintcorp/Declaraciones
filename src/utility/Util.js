@@ -28,16 +28,38 @@ addClassNames = (initialClassName, classNames) => {
     })
   }
   return initialClassName;
-};
+},
 
-const personTypeOptions = [
+personTypeOptions = [
   { value: 'nat', label: 'Persona Natural' },
   // { value: 'jur', label: 'Persona Jurídica' },
   { value: 'obl', label: 'Obligada' }
-]
+],
+
+onlinePathnamesList = [
+  '/',
+  '/iva',
+  '/anexos',
+  '/renta'
+],
+offlinePathnamesList = [
+  '/',
+  '/register',
+  '/services',
+  '/terms',
+  '/payment',
+  '/payment-result',
+  '/profile'
+],
+
+serverURL = 'http://localhost:8050/',
+
+clientURL = 'http://localhost:3000/'
 
 export {
   iDCardValidator,
   addClassNames,
-  personTypeOptions
+  personTypeOptions,
+  onlinePathnamesList,
+  offlinePathnamesList
 };
