@@ -61,5 +61,7 @@ export {
   addClassNames,
   personTypeOptions,
   onlinePathnamesList,
-  offlinePathnamesList
+  offlinePathnamesList,
+  serverURL,
+  clientURL
 };

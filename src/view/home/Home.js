@@ -1,25 +1,15 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom'
+import { NavLink, Route } from 'react-router-dom'
 
 // import '../../App.css';
 import Header from '../../components/logic/Header';
-import FormIconButton from '../../components/form/FormIconButton';
-import FormIconInput from '../../components/form/FormIconInput';
+// import FormIconButton from '../../components/form/FormIconButton';
+// import FormIconInput from '../../components/form/FormIconInput';
 import Iva from '../iva/Iva'
 
 function NotDone() {
   return <h2>Work In Progress</h2>;
 }
-
-const Item = props => <button
-  className="item"
-  onClick={() => {
-    console.info('props', props)
-
-  }}
->
-  {props.children}
-</button>;
 
 class Home extends Component {
   constructor(props) {
