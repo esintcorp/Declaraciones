@@ -78,13 +78,15 @@ class Header extends Component {
         <img src={logo} className={addedClassNames} alt="logo" />
         <div style={{flex: 1}} />
         {profile && <FormIconButton
-          style={{minWidth: '5vmin', margin: '0 0 0 15px', padding: 5, flex: 0}}
+          style={{minWidth: '5vmin', margin: '0 0 0 15px', padding: '10px 20px', flex: 0}}
           iconName="user-circle"
+          // iconSize="2x"
           onClick={this.profileFunction}
         />}
         {logout && <FormIconButton
-          style={{minWidth: '5vmin', margin: '0 20px 0 15px', padding: 5, flex: 0}}
+          style={{minWidth: '5vmin', margin: '0 20px 0 15px', padding: '10px 20px', flex: 0}}
           iconName="sign-out-alt"
+          // iconSize="2x"
           onClick={this.logoutFunction}
         />}
       </header>

@@ -15,6 +15,7 @@ import {
   faSignOutAlt,
   faCheckCircle,
   faUserCircle,
+  faList,
   // faFacebookF,
   // faWhatsapp,
   // faInstagram
@@ -26,7 +27,7 @@ import AppProvider from './components/logic/AppProvider';
 
 library.add(faIgloo, faSignInAlt, faEnvelope, faUser, faUnlock, faUniversity,
   faIdCard, faIdCardAlt, faExclamation, faCheckSquare, faClipboardCheck,
-  faSignOutAlt, faCheckCircle, faUserCircle
+  faSignOutAlt, faCheckCircle, faUserCircle, faList
   // , faFacebookF, faWhatsapp, faInstagram
 )
 

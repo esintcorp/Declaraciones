@@ -48,6 +48,16 @@
 .App-section-authenticated {
   background-color: white;
   color: black;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.App-aside {
+  display: flex;
+  flex-direction: row;
+  /* backgroundColor: 'red', */
+  flex: 1;
+  justify-content: flex-start;
 }
 
 .App-form {
@@ -56,6 +66,7 @@
   width: 70vmin;
   min-width: 50vmin;
 }
+
 .App-link {
   color: #61dafb;
 }
@@ -257,6 +268,7 @@
 .title {
   text-align: center;
   font-size: x-large;
+  margin: 0 0 20px 0;
 }
 
 .profile-input {
@@ -269,7 +281,7 @@
 
 .item {
   display: flex;
-  /* border: solid blue 1px; */
+  border: solid white 1px;
   background-image: linear-gradient(rgba(18, 33, 45, 0.85), rgba(18, 33, 45, 0.85));
   /* height: 30px; */
   padding: 10px 30px;
@@ -278,6 +290,8 @@
   border-radius: 5px;
   cursor: pointer;
   color: white;
+  text-decoration: unset;
+  font-size: unset;
 }
 
 .item:focus {
@@ -294,10 +308,49 @@
 }
 
 .home-div {
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   /* margin: 0 40px; */
-  padding: 10px 40px;
+  flex:1;
+  padding: 0 0 0 10px;
+}
+
+.buttons-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 10px 0 0;
+}
+
+/* .App-header, */
+.buttons-menu .App-button {
+  min-width: 5vmin;
+  margin: 0 0 0 15px;
+  padding: 10px 20px;
+  flex: 0 0;
+}
+
+.resume {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* background-color: red; */
+}
+
+.iva-resume {
+  display: flex;
+  flex-direction: column;
+}
+
+.iva-resume-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.iva-resume-item-value {
+  padding-left: 20px;
 }
 
 input {
@@ -346,5 +399,19 @@ input.hide-spin-button::-webkit-outer-spin-button {
   }
   to {
     font-size: 6em;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .App-section-authenticated {
+    flex-direction: row;
+  }
+
+  .App-aside {
+    flex-direction: column;
+    width: 300vmin;
+    min-width: 170px;
+    max-width: 250px;
+    justify-content: flex-start;
   }
 }
