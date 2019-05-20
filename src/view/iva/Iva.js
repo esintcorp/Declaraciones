@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import FormIconButton from '../../components/form/FormIconButton';
 // import FormIconInput from '../../components/form/FormIconInput';
 import { getToken } from '../../components/logic/Authentication';
+import { doFetch } from '../../utility/Util';
 
 class Iva extends Component {
 
@@ -15,48 +16,12 @@ class Iva extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:8050/getIvaTotals', {
-      method: "POST",
-      mode: 'cors',
-      headers: {
-        // 'Accept': 'application/json',
-        // 'Content-Type': contentType
-        'X-CSRF-TOKEN': getToken()
-      },
-      credentials: 'include'
-    }).then(response => {
-      console.info('response', response)
-      response.json().then(data => {
-        if (!response.ok || response.status !== 200) {
-          console.info('getIvaTotals NOT OK', data)
-
-          // if (!offlinePathnamesList.find(pathname => pathname === window.location.pathname)) {
-          //   console.info( 'path not found' )
-          //   window.location.assign('http://localhost:3000')
-          // }
-
-        } else {
-          console.info('getIvaTotals OK', data)
-          this.setState({ BillResume: data });
-          // if (!onlinePathnamesList.find(pathname => pathname === window.location.pathname)) {
-          //   console.info( 'path not found' )
-          //   window.location.assign('http://localhost:3000')
-          // }
-          // console.info("object", data)
-          // sessionStorage.setItem('user', JSON.stringify(data))
-          // this.setState({ sessionInfo: data });
-        }
-      }).catch(errors => {
-        console.error(errors)
-      });
-      // if (response && response.ok) {
-        // localStorage.setItem("csrfToken", undefined);
-        // afterLogout();
-        // console.info(getToken())
-      // }
-    }).catch(errorfetch => {
-      console.error(errorfetch)
-    });
+    doFetch({
+      endpoint: "getIvaTotals",
+      onOK: data => {
+        this.setState({ BillResume: data });
+      }
+    })
   }
 
   render() {

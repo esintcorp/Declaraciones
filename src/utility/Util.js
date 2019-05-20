@@ -1,3 +1,4 @@
+import { getToken } from '../components/logic/Authentication';
 
 const iDCardValidator = cedula => {
   if (typeof(cedula) === 'string' && cedula.length === 10 && /^\d+$/.test(cedula)) {
@@ -30,6 +31,37 @@ addClassNames = (initialClassName, classNames) => {
   return initialClassName;
 },
 
+doFetch = ({endpoint, url, onOK, onNotOK, onFetchError, onJsonError}) => {
+  console.info('doFetch', onOK({buyTotal: 3}), serverURL, endpoint)
+  fetch(serverURL + endpoint, {
+    method: "POST",
+    mode: 'cors',
+    headers: {
+      // 'Accept': 'application/json',
+      // 'Content-Type': contentType
+      'X-CSRF-TOKEN': getToken()
+    },
+    credentials: 'include'
+  }).then(response => {
+    console.info('response', response)
+    response.json().then(data => {
+      if (!response.ok || response.status !== 200) {
+        console.info('getIvaTotals NOT OK', data)
+        onNotOK(data)
+      } else {
+        console.info('getIvaTotals OK', data)
+        onOK(data)
+      }
+    }).catch(errors => {
+      console.error(errors)
+      onJsonError()
+    });
+  }).catch(errorfetch => {
+    console.error(errorfetch)
+    onFetchError()
+  });
+},
+
 personTypeOptions = [
   { value: 'nat', label: 'Persona Natural' },
   // { value: 'jur', label: 'Persona Jurídica' },
@@ -59,6 +91,7 @@ clientURL = 'http://localhost:3000/'
 export {
   iDCardValidator,
   addClassNames,
+  doFetch,
   personTypeOptions,
   onlinePathnamesList,
   offlinePathnamesList,
