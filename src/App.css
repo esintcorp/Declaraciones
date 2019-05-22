@@ -338,7 +338,7 @@
   /* background-color: red; */
 }
 
-.iva-resume {
+.iva-div {
   display: flex;
   flex-direction: column;
 }
@@ -351,6 +351,16 @@
 
 .iva-resume-item-value {
   padding-left: 20px;
+}
+
+.iva-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.iva-list-buy {
+  display: flex;
+  flex-direction: row;
 }
 
 input {
