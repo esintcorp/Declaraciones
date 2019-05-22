@@ -32,7 +32,7 @@ addClassNames = (initialClassName, classNames) => {
 },
 
 doFetch = ({endpoint, url, onOK, onNotOK, onFetchError, onJsonError}) => {
-  console.info('doFetch', onOK({buyTotal: 3}), serverURL, endpoint)
+  // console.info('doFetch', onOK(), serverURL, endpoint)
   fetch(serverURL + endpoint, {
     method: "POST",
     mode: 'cors',
@@ -46,10 +46,8 @@ doFetch = ({endpoint, url, onOK, onNotOK, onFetchError, onJsonError}) => {
     console.info('response', response)
     response.json().then(data => {
       if (!response.ok || response.status !== 200) {
-        console.info('getIvaTotals NOT OK', data)
         onNotOK(data)
       } else {
-        console.info('getIvaTotals OK', data)
         onOK(data)
       }
     }).catch(errors => {

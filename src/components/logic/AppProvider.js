@@ -35,23 +35,17 @@ class AppProvider extends Component {
       },
       credentials: 'include'
     }).then(response => {
-      console.info('response', response)
       response.json().then(data => {
         if (!response.ok || response.status !== 200) {
-          console.info('hola', offlinePathnamesList)
 
           if (!offlinePathnamesList.find(pathname => pathname === window.location.pathname)) {
-            console.info( 'path not found' )
             window.location.assign('http://localhost:3000')
           }
 
         } else {
-          console.info('hola', onlinePathnamesList)
           if (!onlinePathnamesList.find(pathname => pathname === window.location.pathname)) {
-            console.info( 'path not found' )
             window.location.assign('http://localhost:3000')
           }
-          console.info("object", data)
           sessionStorage.setItem('user', JSON.stringify(data))
           this.setState({ sessionInfo: data });
         }
