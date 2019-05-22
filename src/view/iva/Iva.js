@@ -9,7 +9,7 @@ console.info('props', props)
   return(
     props.data ? props.data.filter(item => item.billType.id === props.filter).map(item => {
       return (
-        <div key={item.id}>{item.name}</div>
+        <div className="iva-title-buy" key={item.id}>{item.name}</div>
       )
     }) : null
 )}
@@ -55,7 +55,8 @@ class Iva extends Component {
 
   render() {
     const BillResume = this.state.BillResume,
-      IvaQuestions = this.state.IvaQuestions;
+      IvaQuestions = this.state.IvaQuestions,
+      IvaAnswers = this.state.IvaAnswers;
 
     return <React.Fragment>
       <div className="buttons-menu">
@@ -73,7 +74,7 @@ class Iva extends Component {
         </button>
       </div>
       <div className="resume">
-        <div className="iva-list">
+        {IvaAnswers.length > 0 && <div className="iva-list">
           <div className="iva-list-buy">
             <IvaList
               data={IvaQuestions}
@@ -86,7 +87,7 @@ class Iva extends Component {
               filter={2}
             />
           </div>
-        </div>
+        </div>}
         <div className="iva-div">
           <div className="iva-resume-item">
             <div>Total Ventas:</div>
