@@ -31,7 +31,7 @@ addClassNames = (initialClassName, classNames) => {
   return initialClassName;
 },
 
-doFetch = ({endpoint, url, onOK, onNotOK, onFetchError, onJsonError}) => {
+doFetch = ({endpoint, url, onOK = () => {}, onNotOK = () => {}, onFetchError = () => {}, onJsonError = () => {}}) => {
   // console.info('doFetch', onOK(), serverURL, endpoint)
   fetch(serverURL + endpoint, {
     method: "POST",

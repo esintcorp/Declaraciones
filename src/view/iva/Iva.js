@@ -22,7 +22,7 @@ class Iva extends Component {
     this.state = {
       BillResume: {},
       IvaQuestions: null,
-      IvaAnswers: [],
+      IvaAnswers: null,
     };
     // this.getIvaQuestions = this.getIvaQuestions.bind(this);
     this.getIvaAnswers = this.getIvaAnswers.bind(this);
@@ -74,7 +74,7 @@ class Iva extends Component {
         </button>
       </div>
       <div className="resume">
-        {IvaAnswers.length > 0 && <div className="iva-list">
+        {<div className="iva-list">
           <div className="iva-list-buy">
             <IvaList
               data={IvaQuestions}
@@ -88,6 +88,9 @@ class Iva extends Component {
             />
           </div>
         </div>}
+        {/*IvaAnswers && IvaAnswers.length === 0 && <div className="iva-list">
+          NO DATA
+        </div>*/}
         <div className="iva-div">
           <div className="iva-resume-item">
             <div>Total Ventas:</div>
