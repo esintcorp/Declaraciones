@@ -43,7 +43,7 @@ doFetch = ({endpoint, url, onOK = () => {}, onNotOK = () => {}, onFetchError = (
     },
     credentials: 'include'
   }).then(response => {
-    console.info('response', response)
+    // console.info('response', response)
     response.json().then(data => {
       if (!response.ok || response.status !== 200) {
         onNotOK(data)

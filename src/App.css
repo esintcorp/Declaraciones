@@ -305,6 +305,7 @@
 
 .quest {
   border: 1px solid grey;
+  color: black;
 }
 
 .home-div {
@@ -331,7 +332,6 @@
 }
 
 .resume {
-  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -354,6 +354,7 @@
 }
 
 .iva-list {
+  padding: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -362,6 +363,7 @@
   display: flex;
   flex-direction: row;
   font-weight: bold;
+  flex-wrap: wrap;
 }
 
 .iva-list-sell {
@@ -373,6 +375,13 @@
 .iva-title-buy {
   padding: 10px;
 }
+
+.iva-popup {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
 input {
   /* margin-top: 30px;
   height: 32px;

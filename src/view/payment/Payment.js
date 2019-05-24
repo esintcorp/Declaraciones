@@ -6,7 +6,7 @@ import Header from '../../components/logic/Header';
 import FormIconInput from '../../components/form/FormIconInput';
 import Title from '../../components/title/Title';
 import Form from '../../components/form/Form';
-import cardImage from '../../assets/images/card.png';
+import cardImage from '../../assets/images/CreditCards.png';
 
 class Payment extends Component {
   constructor(props) {
