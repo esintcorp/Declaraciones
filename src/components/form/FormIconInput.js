@@ -20,7 +20,7 @@ const FormIconInput = ({ style, label, name, iconName, placeholder, classNames, 
         {...restProps}
         name={name}
         className={addedClassNames}
-        placeholder={placeholder || label}
+        placeholder={placeholder}
         // autoComplete="off"
       />
     </div>
