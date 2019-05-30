@@ -42,7 +42,9 @@ class Home extends Component {
   }
 
   render() {
-    const { history } = this.props;
+    const { history, location } = this.props;
+    if (location.pathname === "/profile") return null
+    console.info('location', location)
     return (
       <React.Fragment>
         <Header
@@ -51,6 +53,7 @@ class Home extends Component {
           history={history}
           logout
           profile
+          homeLink={location.pathname === "/profile"}
         />
           <section className="App-section App-section-authenticated">
             <div className="App-aside">
@@ -65,7 +68,6 @@ class Home extends Component {
               <Route path="/iva" component={Iva} />
               <Route path="/anexos" component={NotDone} />
               <Route path="/renta" component={NotDone} />
-
             </div>
           </section>
       </React.Fragment>

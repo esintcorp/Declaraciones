@@ -70,7 +70,8 @@ onlinePathnamesList = [
   '/',
   '/iva',
   '/anexos',
-  '/renta'
+  '/renta',
+  '/profile'
 ],
 offlinePathnamesList = [
   '/',
@@ -78,8 +79,7 @@ offlinePathnamesList = [
   '/services',
   '/terms',
   '/payment',
-  '/payment-result',
-  '/profile'
+  '/payment-result'
 ],
 
 serverURL = 'http://localhost:8050/',

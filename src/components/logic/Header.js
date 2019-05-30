@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom'
 
 import logo from '../../assets/images/logo_transp.png';
 import '../../App.css';
@@ -70,11 +71,13 @@ class Header extends Component {
   }
 
   render() {
-    const { classNames, logout, profile } = this.props;
+    const { classNames, logout, profile, homeLink } = this.props;
     const addedClassNames = addClassNames("App-logo", classNames),
       headerClass = logout ? 'App-header header-logout' : 'App-header';
+      console.info('homeLink', homeLink)
     return (
       <header className={headerClass} >
+        {homeLink && <NavLink to="/"><img src={logo} className={addedClassNames} alt="logo" /></NavLink>}
         <img src={logo} className={addedClassNames} alt="logo" />
         <div style={{flex: 1}} />
         {profile && <FormIconButton

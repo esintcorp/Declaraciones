@@ -116,12 +116,12 @@ class Form extends Component {
   }
 
   render() {
-    const { children, submitButton, style, submitButtonStyle } = this.props;
+    const { children, submitButton, style, submitButtonStyle, className } = this.props;
 
     return (
       <form
         onSubmit={this.handleSubmit}
-        className="App-form"
+        className={className || "App-form"}
         style={style}
       >
 
