@@ -4,9 +4,10 @@ import { isEmpty } from 'lodash';
 
 import '../../App.css';
 import FormIconButton from './FormIconButton';
+import { doFetch } from '../../utility/Util';
 
 const ErrorDiv = props => (
-  <div className="Form-errors-div" >
+  <div className="form-errors-div" >
     <span><FontAwesomeIcon icon="exclamation" /></span>
     {Object.keys(props.errors).map(key => {
       return (<div className="field-error" key={key}>{props.errors[key]}</div>)
@@ -54,37 +55,25 @@ class Form extends Component {
   }
 
   handleSubmit(event) {
-    const { endpoint, body, validationSchema, contentType = 'application/json', onSuccess = () => {} } = this.props;
+    const {
+      endpoint,
+      body,
+      validationSchema,
+      contentType = 'application/json',
+      onSuccess = () => {}
+    } = this.props;
 
     event.preventDefault();
 
-    // return new Promise(resolve => {
     validationSchema.validate(body, { abortEarly: false, context: this.validationContext }).then(
       () => {
 
-        console.info('BODY: ', body, endpoint);
 
-        fetch('http://localhost:8050/' + endpoint, {
-          method: "POST",
-          mode: 'cors',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': contentType
-          },
-          credentials: 'include',
-          body: contentType === "application/json" ? JSON.stringify(body) : parametrizeJson(body)
-        }).then(response => {
-          console.info('response', response)
-
-          response.json().then(data => {
-            if (!response.ok || response.status !== 200) {
-              if (data.errors) {
-                this.setState({errors: unflattenYupError(data.errors)})
-              } else if (data.error) {
-                this.setState({errors: {"message": data.message}})
-              }
-              console.info("object", this.state.errors, data)
-            } else {
+          doFetch({
+            endpoint,
+            contentType,
+            body: contentType === "application/json" ? JSON.stringify(body) : parametrizeJson(body),
+            onOK: data => {
               console.log("Successful", data);
               if (typeof(Storage) !== "undefined" && data.token) {
                 // Store
@@ -100,11 +89,16 @@ class Form extends Component {
                 onSuccess(data);
               }
               this.setState({errors: {}})
+            },
+            onNotOK: data => {
+              if (data.errors) {
+                this.setState({errors: unflattenYupError(data.errors)})
+              } else if (data.error) {
+                this.setState({errors: {"message": data.message}})
+              }
+              console.info("object", this.state.errors, data)
             }
-          }).catch(e => {
-            console.info("eeerrrrooorr", e)
           })
-        });
       },
       validationError => {
         console.info("holaaaa erroooor", validationError)
@@ -123,6 +117,13 @@ class Form extends Component {
         onSubmit={this.handleSubmit}
         className={className || "App-form"}
         style={style}
+        // TODO:
+        // The form tag should have an onError prop which I could use to return
+        // server and validation errors this way:
+        // onError={errors => children(errors)}
+        // orthis way:
+        // onError={errors => this.setState({errors})}
+        // then on render prop children could be able to return children(this.state.errors)
       >
 
         {children}

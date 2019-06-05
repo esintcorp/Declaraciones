@@ -1,20 +1,56 @@
 import React, { Component } from 'react'
 
 import FormIconButton from '../../components/form/FormIconButton';
-import FormIconInput from '../../components/form/FormIconInput';
 import { doFetch } from '../../utility/Util';
 
 import IvaForm from "./IvaForm"
 
-const IvaList = props => {
-console.info('props', props)
-  return(
-    props.data ? props.data.filter(item => item.billType.id === props.filter).map(item => {
-      return (
-        <div className="iva-title-buy" key={item.id}>{item.name}</div>
-      )
-    }) : null
-)}
+const IvaList = ({ titles, data, filter }) => {
+
+  return titles
+    ? titles
+        .filter(item => item.billType.id === filter)
+        .map(item => {
+          return (
+            <div key={item.id}>
+              <div className="iva-title">
+                {item.name}
+              </div>
+              <div className="iva-answer" >
+                {data.filter(dataItem => dataItem.id === item.id)
+                  .map(dataItem => {
+                    // let cellClassName = "iva-answer-cell";
+                    //
+                    // if (dataItem.type === "double") {
+                    //   cellClassName = cellClassName + " cell-number"
+                    // }
+                    let itemValue = dataItem.value;
+                    if (dataItem.type === "double") {
+                      itemValue = new Intl.NumberFormat('es-EC', {
+                        style: 'currency',
+                        currency: 'USD'
+                      }).format(dataItem.value || 0)
+                    } else if (dataItem.type === "date") {
+                      itemValue = new Intl.DateTimeFormat('es', {
+                        // weekday: 'long',
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                      }).format(new Date((dataItem.value + "T00:00:00") || 0))
+                    }
+                    return(
+                      <div className="iva-answer-cell" key={dataItem.billId+dataItem.id}>
+                        {itemValue}
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            </div>
+          );
+        })
+    : null;
+};
 
 class Iva extends Component {
 
@@ -25,13 +61,13 @@ class Iva extends Component {
       BillResume: {},
       IvaQuestions: null,
       IvaAnswers: null,
-      showPopup: false
+      showPopup: false,
+      recentBill: null
     };
     // this.getIvaQuestions = this.getIvaQuestions.bind(this);
     this.getIvaAnswers = this.getIvaAnswers.bind(this);
     this.newIvaAnswer = this.newIvaAnswer.bind(this);
-    this.newBuy = this.newBuy.bind(this);
-    this.newSell = this.newSell.bind(this);
+    this.showPopupButtons = this.showPopupButtons.bind(this);
   }
 
   componentDidMount() {
@@ -54,58 +90,47 @@ class Iva extends Component {
     doFetch({
       endpoint: "getIvaAnswers",
       onOK: data => {
-        this.setState({ IvaAnswers: data });
+        this.setState({
+          IvaAnswers: data,
+          newIvaAnswer: null,
+          showPopup: false
+        });
       }
     })
   }
 
-  newIvaAnswer() {
-    if (!this.state.showPopup) {
-      this.setState({showPopup: true})
-    }
+  showPopupButtons() {
+    this.setState({showPopup: !this.state.showPopup})
   }
 
-  newBuy() {
+  newIvaAnswer(filter) {
     let newIvaAnswer = []
 
-    this.state.IvaQuestions.filter(item => item.billType.id === 1).map(field => {
-      // newIvaAnswer[field.name] = null
-      newIvaAnswer.push({
-        id: field.id,
-        name: field.name,
-        type: field.datatype,
-        value: '',
-        billType_id: 1
-      })
-      return null
-    })
+    this.state.IvaQuestions.filter(
+      item => item.billType.id === filter
+    ).map(
+      field => {
+        newIvaAnswer.push({
+          id: field.id,
+          name: field.name,
+          type: field.datatype,
+          value: '',
+          billType_id: filter
+        })
+        return null
+      }
+    )
 
     this.setState({
       newIvaAnswer,
-      showPopup: false
-    })
-  }
-
-  newSell() {
-    let newIvaAnswer = {}
-
-    this.state.IvaQuestions.filter(item => item.billType.id === 2).map(field => {
-      newIvaAnswer[field.name] = null
-      return null
-    })
-    this.setState({
-      newIvaAnswer: {
-        billType: {
-          id: 2
-        },
-        ...newIvaAnswer
-      },
-      showPopup: false
+      showPopup: false,
+      IvaAnswers: null
     })
   }
 
   render() {
-    const { BillResume, IvaQuestions, IvaAnswers, showPopup, newIvaAnswer } = this.state;
+    const { BillResume, IvaQuestions, IvaAnswers, showPopup, newIvaAnswer } = this.state,
+      { history } = this.props;
 
     let popupClass = showPopup ? "iva-popup" : "iva-popup hidden-div"
 
@@ -122,7 +147,7 @@ class Iva extends Component {
         />
         <button
           className="App-button"
-          onClick={this.newIvaAnswer}
+          onClick={this.showPopupButtons}
         >
           <i className='fas fa-plus fa-1x'></i>
         </button>
@@ -131,31 +156,33 @@ class Iva extends Component {
       {/*<div className="ppppppp">*/}
         <button
           className="App-button iva-new-button"
-          onClick={this.newBuy}
+          onClick={() => this.newIvaAnswer(1)}
         >
           Compra
         </button>
         <button
           className="App-button iva-new-button"
-          onClick={this.newSell}
+          onClick={() => this.newIvaAnswer(2)}
         >
           Venta
         </button>
       {/*</div>*/}
       </div>
-      <div className="iva-list">
+      <div className="iva-">
       {console.info('IvaAnswers', IvaAnswers, newIvaAnswer )}
         {IvaAnswers && IvaAnswers.length > 0 && <div className="iva-list">
-          {IvaAnswers.filter(item => item.billType.id === 1).length >1 && <div className="iva-list-buy">
+          <div className="iva-list-buy">
             <IvaList
-              data={IvaQuestions}
+              titles={IvaQuestions}
               filter={1}
+              data={IvaAnswers}
             />
-          </div>}
+          </div>
           <div className="iva-list-sell">
             <IvaList
-              data={IvaQuestions}
+              titles={IvaQuestions}
               filter={2}
+              data={IvaAnswers}
             />
           </div>
         </div>}
@@ -166,14 +193,14 @@ class Iva extends Component {
           data={IvaQuestions}
           filter={1}
           newIvaAnswer={this.state.newIvaAnswer}
+          history={history}
         />}
-        {newIvaAnswer && newIvaAnswer[0].billType_id === 2 && <div className="iva-list-sell">
-          <IvaForm
-            data={IvaQuestions}
-            filter={2}
-            newIvaAnswer={this.state.newIvaAnswer}
-          />
-        </div>}
+        {newIvaAnswer && newIvaAnswer[0].billType_id === 2 && <IvaForm
+          data={IvaQuestions}
+          filter={2}
+          newIvaAnswer={this.state.newIvaAnswer}
+          history={history}
+        />}
       </div>
       <div className="resume">
         <div>

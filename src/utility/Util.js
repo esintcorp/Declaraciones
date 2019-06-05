@@ -31,17 +31,27 @@ addClassNames = (initialClassName, classNames) => {
   return initialClassName;
 },
 
-doFetch = ({endpoint, url, onOK = () => {}, onNotOK = () => {}, onFetchError = () => {}, onJsonError = () => {}}) => {
+doFetch = ({
+  endpoint,
+  url,
+  body,
+  contentType = 'application/json',
+  onOK = () => {},
+  onNotOK = () => {},
+  onFetchError = () => {},
+  onJsonError = () => {}
+}) => {
   // console.info('doFetch', onOK(), serverURL, endpoint)
   fetch(serverURL + endpoint, {
     method: "POST",
     mode: 'cors',
     headers: {
-      // 'Accept': 'application/json',
-      // 'Content-Type': contentType
+      'Accept': 'application/json',
+      'Content-Type': contentType,
       'X-CSRF-TOKEN': getToken()
     },
-    credentials: 'include'
+    credentials: 'include',
+    body
   }).then(response => {
     // console.info('response', response)
     response.json().then(data => {

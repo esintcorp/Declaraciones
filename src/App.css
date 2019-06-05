@@ -87,7 +87,7 @@
   color: inherit;
 }
 
-.Form-errors-div {
+.form-errors-div {
   display: flex;
   flex-direction: column;
   color: red;
@@ -116,6 +116,7 @@
   font-size: 13.33px;
   border: 1px solid transparent;
   border-radius: 5px;
+  width: 100%;
 }
 
 .subscription-selected {
@@ -254,6 +255,11 @@
   width: 88%;
 }
 
+.input-width-70 {
+  width: 169px;
+  height: 25%;
+}
+
 .payment-input::placeholder {
   color: #b9c0c3;
 }
@@ -306,14 +312,16 @@
 .quest {
   border: 1px solid grey;
   color: black;
+  width: 169px;
 }
 
 .home-div {
   display: flex;
   flex-direction: column;
   /* margin: 0 40px; */
-  flex:1;
-  padding: 0 0 0 10px;
+  flex: 1;
+  /* padding: 0 0 0 10px; */
+  min-width: 100%;
 }
 
 .buttons-menu {
@@ -334,10 +342,11 @@
 .iva-new-button {
   margin: 0;
   padding: 5px;
-  min-width: 70px;
+  min-width: 100px;
   background-color: rgba(18, 33, 45, 0.85);
   border-color: white;
   color: white;
+  font-size: 18px;
 }
 
 .iva-new-button:hover {
@@ -367,27 +376,44 @@
 }
 
 .iva-list {
-  padding: 10px;
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 
 .iva-list-buy {
   display: flex;
   flex-direction: row;
-  font-weight: bold;
-  flex-wrap: wrap;
+  font-weight: 400;
 }
 
 .iva-list-sell {
   display: flex;
   flex-direction: row;
-  font-weight: bold;
-  flex-wrap: wrap;
+  font-weight: 400;
 }
 
-.iva-title-buy {
+.iva-title {
   padding: 10px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.iva-answer {
+  padding: 10px;
+  flex-direction: column;
+}
+
+.iva-answer-cell {
+  white-space: nowrap;
+}
+
+.iva-list-new {
+  display: flex;
+  flex-direction: row;
+  font-weight: 400;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .iva-popup {
@@ -464,4 +490,10 @@ input.hide-spin-button::-webkit-outer-spin-button {
     max-width: 250px;
     justify-content: flex-start;
   }
+
+  .home-div {
+    padding: 0 0 0 10px;
+    min-width: 80%;
+  }
+
 }
