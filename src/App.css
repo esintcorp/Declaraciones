@@ -170,32 +170,32 @@
 
 .subscription-type-div {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   margin: 30px 30px;
 }
 
 .subscription-period-div {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   margin: 30px;
 }
 
 .payment-div {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin: 30px;
   justify-content: center;
 }
 
 .payment-result {
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: auto;
+  left: auto; */
   /* background-color: #d2e0f7ab; */
-  height: 100%;
-  width: 100vmin;
+  /* height: 100%;
+  width: 100vmin; */
   text-align: center;
   /* color: #FFF; rgb(16, 60, 95); */
 }
@@ -210,7 +210,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 0 32vmin;
+  padding: 10px 50px;
+}
+
+.social-icon {
+    margin: 0 20px;
 }
 
 .payment-OK-img {
@@ -233,15 +237,17 @@
 }
 
 .payment-card {
-  width: 60vmin;
-  height: 37vmin;
-  margin: 5vmin;
+  width: 100%;
+  /* height: 37vmin; */
+  /* margin: 5vmin; */
   box-shadow: 0px 0px 20px aliceblue;
   border-radius: 2vmin;
 }
 
 .payment-data {
   margin: 5vmin;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .payment-input {
@@ -251,8 +257,8 @@
   border-radius: 5px;
 }
 
-.input-width-88 {
-  width: 88%;
+.input-width-90 {
+  width: 90%;
 }
 
 .input-width-70 {
@@ -265,10 +271,11 @@
 }
 
 .terms-div {
-  /* display: flex; */
-  /* flex-direction: column; */
   margin: 0 40px;
-  padding: 10px 40px;
+}
+
+.terms-div p {
+  text-align: justify;
 }
 
 .title {
@@ -376,21 +383,27 @@
 }
 
 .iva-list {
+  /* padding: 10px; */
   display: flex;
   flex-direction: column;
   overflow: auto;
+  /* background-color: red; */
 }
 
 .iva-list-buy {
   display: flex;
   flex-direction: row;
   font-weight: 400;
+  /* flex-wrap: wrap; */
+  /* justify-content: center; */
 }
 
 .iva-list-sell {
   display: flex;
   flex-direction: row;
   font-weight: 400;
+  /* flex-wrap: wrap; */
+  /* justify-content: center; */
 }
 
 .iva-title {
@@ -494,6 +507,29 @@ input.hide-spin-button::-webkit-outer-spin-button {
   .home-div {
     padding: 0 0 0 10px;
     min-width: 80%;
+  }
+
+  .subscription-type-div {
+    flex-direction: row;
+  }
+
+  .subscription-period-div {
+    flex-direction: row;
+  }
+
+  .terms-div {
+    margin: 0 40px;
+    padding: 10px 40px;
+  }
+
+  .payment-div {
+    flex-direction: row;
+  }
+
+  .payment-card {
+    width: 55vmin;
+    height: 37vmin;
+    margin: 5vmin;
   }
 
 }
