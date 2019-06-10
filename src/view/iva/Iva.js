@@ -1,56 +1,9 @@
 import React, { Component } from 'react'
 
-import FormIconButton from '../../components/form/FormIconButton';
 import { doFetch } from '../../utility/Util';
 
-import IvaForm from "./IvaForm"
-
-const IvaList = ({ titles, data, filter }) => {
-
-  return titles
-    ? titles
-        .filter(item => item.billType.id === filter)
-        .map(item => {
-          return (
-            <div key={item.id}>
-              <div className="iva-title">
-                {item.name}
-              </div>
-              <div className="iva-answer" >
-                {data.filter(dataItem => dataItem.id === item.id)
-                  .map(dataItem => {
-                    // let cellClassName = "iva-answer-cell";
-                    //
-                    // if (dataItem.type === "double") {
-                    //   cellClassName = cellClassName + " cell-number"
-                    // }
-                    let itemValue = dataItem.value;
-                    if (dataItem.type === "double") {
-                      itemValue = new Intl.NumberFormat('es-EC', {
-                        style: 'currency',
-                        currency: 'USD'
-                      }).format(dataItem.value || 0)
-                    } else if (dataItem.type === "date") {
-                      itemValue = new Intl.DateTimeFormat('es', {
-                        // weekday: 'long',
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
-                      }).format(new Date((dataItem.value + "T00:00:00") || 0))
-                    }
-                    return(
-                      <div className="iva-answer-cell" key={dataItem.billId+dataItem.id}>
-                        {itemValue}
-                      </div>
-                    )
-                  })
-                }
-              </div>
-            </div>
-          );
-        })
-    : null;
-};
+import IvaForm from "./IvaForm";
+import IvaTable from "./IvaTable";
 
 class Iva extends Component {
 
@@ -64,7 +17,7 @@ class Iva extends Component {
       showPopup: false,
       recentBill: null
     };
-    // this.getIvaQuestions = this.getIvaQuestions.bind(this);
+
     this.getIvaAnswers = this.getIvaAnswers.bind(this);
     this.newIvaAnswer = this.newIvaAnswer.bind(this);
     this.showPopupButtons = this.showPopupButtons.bind(this);
@@ -136,24 +89,14 @@ class Iva extends Component {
 
     return <React.Fragment>
       <div className="buttons-menu">
-        {/*<button className="App-button">
-          <i className="fas fa-list fa-2x"></i>
-        </button> */}
-        <FormIconButton
-          // style={{minWidth: '5vmin', margin: '0 0 0 15px', padding: 5, flex: 0}}
-          iconName="list"
-          // iconSize="2x"
-          onClick={this.getIvaAnswers}
-        />
-        <button
-          className="App-button"
-          onClick={this.showPopupButtons}
-        >
+        <button className="App-button" onClick={this.getIvaAnswers} >
+          <i className="fas fa-list fa-1x"></i>
+        </button>
+        <button className="App-button" onClick={this.showPopupButtons} >
           <i className='fas fa-plus fa-1x'></i>
         </button>
       </div>
       <div className={popupClass}>
-      {/*<div className="ppppppp">*/}
         <button
           className="App-button iva-new-button"
           onClick={() => this.newIvaAnswer(1)}
@@ -166,20 +109,18 @@ class Iva extends Component {
         >
           Venta
         </button>
-      {/*</div>*/}
       </div>
       <div className="iva-">
-      {console.info('IvaAnswers', IvaAnswers, newIvaAnswer )}
         {IvaAnswers && IvaAnswers.length > 0 && <div className="iva-list">
           <div className="iva-list-buy">
-            <IvaList
+            <IvaTable
               titles={IvaQuestions}
               filter={1}
               data={IvaAnswers}
             />
           </div>
           <div className="iva-list-sell">
-            <IvaList
+            <IvaTable
               titles={IvaQuestions}
               filter={2}
               data={IvaAnswers}

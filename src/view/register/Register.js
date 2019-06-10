@@ -99,7 +99,6 @@ class Register extends Component {
               name="email"
               type="email"
               placeholder="Correo Electrónico"
-              value={this.state.user.email}
               onChange={this.handleChange}
               iconName="envelope"
               classNames="flex1"
@@ -109,7 +108,6 @@ class Register extends Component {
               name="password"
               type="password"
               placeholder="Contraseña"
-              value={this.state.user.password}
               onChange={this.handleChange}
               iconName="unlock"
               classNames="flex1"
@@ -122,12 +120,12 @@ class Register extends Component {
               options={personTypeOptions}
               onChange={this.handleSelectChange}
               iconName="university"
+              classNames="flex1"
             />
             <FormIconInput
               style={{justifyContent: 'space-between', flex: 1}}
               name="firstName"
               placeholder="Nombres"
-              value={this.state.user.firstName}
               onChange={this.handleChange}
               iconName="user"
               classNames="flex1"
@@ -136,7 +134,6 @@ class Register extends Component {
               style={{justifyContent: 'space-between', flex: 1}}
               name="lastName"
               placeholder="Apellidos"
-              value={this.state.user.lastName}
               onChange={this.handleChange}
               iconName="user"
               classNames="flex1"
@@ -148,7 +145,6 @@ class Register extends Component {
               min="0"
               classNames={["hide-spin-button", "flex1"]}
               placeholder="Cédula de identidad"
-              value={this.state.user.idCard}
               onChange={this.handleChange}
               iconName="id-card"
             />
@@ -159,7 +155,6 @@ class Register extends Component {
               min="0"
               classNames={["hide-spin-button", "flex1"]}
               placeholder="Número de RUC"
-              value={this.state.user.rucNumber}
               onChange={this.handleChange}
               iconName="id-card-alt"
             />

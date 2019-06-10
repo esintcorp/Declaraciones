@@ -289,7 +289,12 @@
   margin: 5px 0;
   background: rgba(115, 115, 125, 0.90);
   border-radius: 5px;
-  width: 30vmin;
+  width: 180px;
+}
+
+.profile-select {
+  padding: 0;
+  width: 202px;
 }
 
 .item {
@@ -320,6 +325,11 @@
   border: 1px solid grey;
   color: black;
   width: 169px;
+}
+
+.select-quest {
+  border-radius: 5px;
+  width: 209px;
 }
 
 .home-div {
@@ -383,7 +393,7 @@
 }
 
 .iva-list {
-  /* padding: 10px; */
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -408,17 +418,33 @@
 
 .iva-title {
   padding: 10px;
+  margin-top: 10px;
   font-weight: bold;
+  text-align: center;
   white-space: nowrap;
+  border-top: 1px dotted orange;
+  border-bottom: 1px dotted orange;
+  border-left: 1px dotted orange;
+}
+
+.last-cell {
+  border-right: 1px dotted orange;
 }
 
 .iva-answer {
-  padding: 10px;
+  /* padding: 10px; */
   flex-direction: column;
 }
 
 .iva-answer-cell {
+  padding: 0 10px;
   white-space: nowrap;
+  border-bottom: 1px dotted orange;
+  border-left: 1px dotted orange;
+}
+
+.cell-number {
+  text-align: right;
 }
 
 .iva-list-new {
@@ -442,6 +468,7 @@
 .hidden-div {
   visibility: hidden;
 }
+
 input {
   /* margin-top: 30px;
   height: 32px;

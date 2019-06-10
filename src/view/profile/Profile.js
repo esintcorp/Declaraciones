@@ -56,7 +56,6 @@ class Profile extends Component {
     const { history } = this.props,
       inputStyle = {
         flexDirection: 'row',
-        // alignItems: 'flex-start',
         justifyContent: 'space-between',
         marginTop: 10,
         border: 'none'
@@ -115,7 +114,6 @@ class Profile extends Component {
                 placeholder="Nombres"
                 value={this.state.user.firstName}
                 onChange={this.handleChange}
-                // iconName="user"
                 classNames="profile-input"
               />
               <FormIconInput
@@ -125,7 +123,6 @@ class Profile extends Component {
                 placeholder="Apellidos"
                 value={this.state.user.lastName}
                 onChange={this.handleChange}
-                // iconName="user"
                 classNames="profile-input"
               />
               <FormIconInput
@@ -136,7 +133,6 @@ class Profile extends Component {
                 placeholder="Correo Electrónico"
                 value={this.state.user.email}
                 onChange={this.handleChange}
-                // iconName="envelope"
                 classNames="profile-input"
               />
               <FormIconInput
@@ -146,7 +142,6 @@ class Profile extends Component {
                 type="password"
                 value={this.state.user.password}
                 onChange={this.handleChange}
-                // iconName="unlock"
                 classNames="profile-input"
               />
               <FormIconInput
@@ -158,7 +153,6 @@ class Profile extends Component {
                 placeholder="Cédula de identidad"
                 value={this.state.user.idCard}
                 onChange={this.handleChange}
-                // iconName="id-card"
               />
               <FormIconInput
                 label="Número de RUC"
@@ -168,20 +162,18 @@ class Profile extends Component {
                 placeholder="Número de RUC"
                 value={this.state.user.rucNumber}
                 onChange={this.handleChange}
-                // iconName="id-card-alt"
+              />
+              <FormIconSelect
+                label="Tipo de persona"
+                style={inputStyle}
+                name="type"
+                placeholder="Tipo de persona"
+                value={this.state.user.type}
+                options={personTypeOptions}
+                onChange={this.handleSelectChange}
+                classNames={["profile-input", "profile-select"]}
               />
             </div>
-            <FormIconSelect
-              label="Tipo de persona"
-              style={inputStyle}
-              name="type"
-              placeholder="Tipo de persona"
-              value={this.state.user.type}
-              options={personTypeOptions}
-              onChange={this.handleSelectChange}
-              // iconName="university"
-              classNames="profile-input"
-            />
             <FormIconInput
               style={{justifyContent: 'space-between', flex: 1}}
               name="sriUsername"

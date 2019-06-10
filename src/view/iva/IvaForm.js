@@ -7,6 +7,7 @@ import {
 
 import Form from '../../components/form/Form';
 import FormIconInput from '../../components/form/FormIconInput';
+import FormIconSelect from '../../components/form/FormIconSelect';
 
 class IvaForm extends Component {
 
@@ -17,11 +18,11 @@ class IvaForm extends Component {
       newIvaAnswer: null
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
   handleChange(index, event) {
-    let //name = event.target.name,
-      value = event.target.value,
+    let value = event.target.value,
       { newIvaAnswer } = this.state
 
     // Setting Taxes values, 5 and 14 are subtotals
@@ -37,22 +38,34 @@ class IvaForm extends Component {
     });
   }
 
+  handleSelectChange(index, value, options) {
+    const label = options.find(item => item.value === value).label;
+    let { newIvaAnswer } = this.state;
+
+    newIvaAnswer[index].value = label;
+
+    this.setState({
+      newIvaAnswer
+    });
+  }
+
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (!prevState.newIvaAnswer || prevState.newIvaAnswer[0][nextProps.data[0].name] === null) {
-      return ({ newIvaAnswer: nextProps.newIvaAnswer })
+    if (
+      !prevState.newIvaAnswer ||
+      prevState.newIvaAnswer[0][nextProps.data[0].name] === null
+    ) {
+      return { newIvaAnswer: nextProps.newIvaAnswer };
     } else {
-      return null
+      return null;
     }
   }
 
   render() {
-    const { /*data, filter, */history } = this.props,
-      { newIvaAnswer } = this.state
-      console.info('newIvaAnswer', newIvaAnswer)
+    const { data, history } = this.props,
+      { newIvaAnswer } = this.state;
 
     if (newIvaAnswer.length > 0) return (
       <Form
-        // style={{flex: 0.7}}
         className="iva-list-new"
         endpoint="saveAnswers"
         body={newIvaAnswer}
@@ -61,8 +74,6 @@ class IvaForm extends Component {
         }))}
         submitButtonStyle={{flex: 'none', margin: '30px 5px 0', width: 210}}
         onSuccess={data => {
-          //   pathname: '/iva',
-          // });
           history.replace({pathname: '/'})
           setTimeout(history.replace({pathname: '/iva'}), 100)
         }}
@@ -70,15 +81,49 @@ class IvaForm extends Component {
       >
         {
           newIvaAnswer.map((item, index) => {
-            let type
+            let type;
             if (item.type === "string") {
-              type = "text"
+              type = "text";
             } else if (item.type === "double") {
-              type = "number"
+              type = "number";
             } else {
-              type = "date"
+              type = "date";
             }
 
+            let options = data.find(
+              filtered => filtered.id === item.id && filtered.options.length > 0
+            );
+
+            options = options
+              ? options.options.map(option => {
+                  return {
+                    value: option.id,
+                    label: option.value
+                  };
+                })
+              : null;
+
+            if (options) {
+              return (
+                <FormIconSelect
+                  key={item.id}
+                  name={item.name}
+                  label={item.name}
+                  value={this.state.newIvaAnswer[index].value}
+                  idValue="label"
+                  onChange={value => this.handleSelectChange(index, value, options)}
+                  options={options}
+                  classNames={["quest", "select-quest"]}
+                  style={{
+                    margin: "10px 5px 0",
+                    justifyContent: "space-between",
+                    flexDirection: "column",
+                    alignItems: "start",
+                    color: "black"
+                  }}
+                />
+              );
+            }
             return (
               <FormIconInput
                 key={item.id}
@@ -86,18 +131,21 @@ class IvaForm extends Component {
                 type={type}
                 label={item.name}
                 value={this.state.newIvaAnswer[index].value}
-                disabled={item.id === 6 || item.id === 7 || item.id === 15 || item.id === 16}
+                disabled={
+                  item.id === 6 || item.id === 7 || item.id === 15 || item.id === 16
+                }
                 onChange={event => this.handleChange(index, event)}
                 classNames={["quest", type === "date" ? "input-width-70" : null]}
                 style={{
-                  margin: '10px 5px 0',
-                  justifyContent: 'space-between',
-                  flexDirection: 'column',
-                  alignItems: 'start'
+                  margin: "10px 5px 0",
+                  justifyContent: "space-between",
+                  flexDirection: "column",
+                  alignItems: "start"
                 }}
                 autoComplete="off"
+                step="any"
               />
-            )
+            );
           })
         }
       </Form>
