@@ -1,11 +1,8 @@
-import React, { Component } from 'react'
-import { NavLink, Route } from 'react-router-dom'
-
-// import '../../App.css';
-import Header from '../../components/logic/Header';
-// import FormIconButton from '../../components/form/FormIconButton';
-// import FormIconInput from '../../components/form/FormIconInput';
-import Iva from '../iva/Iva'
+import React, { Component } from "react";
+import { NavLink, Route } from "react-router-dom";
+import Header from "../../components/logic/Header";
+import Iva from "../iva/Iva";
+import Anexo from "../anexo/Anexo";
 
 function NotDone() {
   return <h2>Work In Progress</h2>;
@@ -43,8 +40,8 @@ class Home extends Component {
 
   render() {
     const { history, location } = this.props;
-    if (location.pathname === "/profile") return null
-    console.info('location', location)
+    if (location.pathname === "/profile") return null;
+    console.info("location", location);
     return (
       <React.Fragment>
         <Header
@@ -55,21 +52,28 @@ class Home extends Component {
           profile
           homeLink={location.pathname === "/profile"}
         />
-          <section className="App-section App-section-authenticated">
-            <div className="App-aside">
-              {/* <Item history={history}>IVA</Item>
-              <Item history={history}>Anexos</Item>
-              <Item history={history}>Renta</Item> */}
-              <NavLink to="/iva" className="item">IVA</NavLink>
-              <NavLink to="/anexos" className="item">Anexos</NavLink>
-              <NavLink to="/renta" className="item">Renta</NavLink>
-            </div>
-            <div className="home-div">
-              <Route path="/iva" component={Iva} />
-              <Route path="/anexos" component={NotDone} />
-              <Route path="/renta" component={NotDone} />
-            </div>
-          </section>
+        <section className="App-section App-section-authenticated">
+          <div className="App-aside">
+            <NavLink to="/iva" className="item">
+              IVA
+            </NavLink>
+            <NavLink to="/anexos" className="item">
+              Anexos Gastos Personales
+            </NavLink>
+            <NavLink to="/renta" className="item">
+              Impuesto a la Renta
+            </NavLink>
+          </div>
+          <div className="home-div">
+            <Route path="/iva" component={Iva} />
+            {/* http://www.sri.gob.ec/web/guest/detalle-noticias?idnoticia=620&marquesina=1
+              https://www.eluniverso.com/noticias/2019/01/03/nota/7121898/sri-paso-paso-proyeccion-gasto-personales
+            */}
+            <Route path="/anexos" component={Anexo} />
+            {/* https://www.jezl-auditores.com/index.php/tributario/101-tabla-de-impuesto-a-la-renta-ir-2019-personas-naturales-ecuador */}
+            <Route path="/renta" component={NotDone} />
+          </div>
+        </section>
       </React.Fragment>
     );
   }

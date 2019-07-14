@@ -8,7 +8,13 @@ class IvaTable extends Component {
         titles &&
         titles.filter(item => item.billType.id === filter);
 
-    return filteredTitles.map((item, index) => {
+    return (
+      <React.Fragment>
+      <div className="table-title">
+        {filter === 1 ? "Compras" : "Ventas"}
+      </div>
+      <div className="iva-list-table">
+      {filteredTitles.map((item, index) => {
       let titleClassName = "iva-title";
 
       if (filteredTitles.length - 1 === index) {
@@ -29,6 +35,12 @@ class IvaTable extends Component {
                 if (dataItem.type === "double") {
                   itemValue = new Intl.NumberFormat('es-EC', {
                     style: 'currency',
+                    currency: 'USD'
+                  }).format(dataItem.value || 0)
+                  cellClassName = cellClassName + " cell-number"
+                } else if (dataItem.type === "percentage") {
+                  itemValue = new Intl.NumberFormat('es-EC', {
+                    style: 'currency', //percentage
                     currency: 'USD'
                   }).format(dataItem.value || 0)
                   cellClassName = cellClassName + " cell-number"
@@ -58,7 +70,10 @@ class IvaTable extends Component {
           </div>
         </div>
       );
-    })
+    })}
+    </div>
+    </React.Fragment>
+  )
   }
 };
 

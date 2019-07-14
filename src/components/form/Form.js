@@ -64,6 +64,7 @@ class Form extends Component {
     } = this.props;
 
     event.preventDefault();
+    console.info('BODY: ', body, endpoint);
 
     validationSchema.validate(body, { abortEarly: false, context: this.validationContext }).then(
       () => {
@@ -99,6 +100,48 @@ class Form extends Component {
               console.info("object", this.state.errors, data)
             }
           })
+
+        // fetch('http://localhost:8050/' + endpoint, {
+        //   method: "POST",
+        //   mode: 'cors',
+        //   headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': contentType
+        //   },
+        //   credentials: 'include',
+        //   body: contentType === "application/json" ? JSON.stringify(body) : parametrizeJson(body)
+        // }).then(response => {
+        //   console.info('response', response)
+        //
+        //   response.json().then(data => {
+        //     if (!response.ok || response.status !== 200) {
+        //       if (data.errors) {
+        //         this.setState({errors: unflattenYupError(data.errors)})
+        //       } else if (data.error) {
+        //         this.setState({errors: {"message": data.message}})
+        //       }
+        //       console.info("object", this.state.errors, data)
+        //     } else {
+        //       console.log("Successful", data);
+        //       if (typeof(Storage) !== "undefined" && data.token) {
+        //         // Store
+        //         localStorage.setItem("csrfToken", data.token);
+        //         console.info('TOKEEEENNNN', localStorage.getItem("csrfToken"))
+        //         onSuccess(data);
+        //       } else if (data.message) {
+        //         this.setState({errors: data})
+        //         console.error(data.message)
+        //       } else if (data.token) {
+        //         console.error("Sorry, your browser does not support Web Storage...");
+        //       } else {
+        //         onSuccess(data);
+        //       }
+        //       this.setState({errors: {}})
+        //     }
+        //   }).catch(e => {
+        //     console.info("eeerrrrooorr", e)
+        //   })
+        // });
       },
       validationError => {
         console.info("holaaaa erroooor", validationError)

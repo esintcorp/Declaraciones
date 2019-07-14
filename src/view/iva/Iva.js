@@ -112,20 +112,16 @@ class Iva extends Component {
       </div>
       <div className="iva-">
         {IvaAnswers && IvaAnswers.length > 0 && <div className="iva-list">
-          <div className="iva-list-buy">
-            <IvaTable
-              titles={IvaQuestions}
-              filter={1}
-              data={IvaAnswers}
-            />
-          </div>
-          <div className="iva-list-sell">
-            <IvaTable
-              titles={IvaQuestions}
-              filter={2}
-              data={IvaAnswers}
-            />
-          </div>
+          <IvaTable
+            titles={IvaQuestions}
+            filter={1}
+            data={IvaAnswers}
+          />
+          <IvaTable
+            titles={IvaQuestions}
+            filter={2}
+            data={IvaAnswers}
+          />
         </div>}
         {IvaAnswers && IvaAnswers.length === 0 && <div className="iva-list">
           NO DATA
@@ -167,8 +163,8 @@ class Iva extends Component {
               }).format(BillResume.buyTotal || 0)}
             </div>
           </div>
-          <div className="iva-resume-item">
-            <div>Neto a Pagar:</div>
+          <div className="iva-resume-item-pay">
+            <div>IVA Neto a Pagar:</div>
             <div className="iva-resume-item-value">
               {new Intl.NumberFormat('es-EC', {
                   style: 'currency',

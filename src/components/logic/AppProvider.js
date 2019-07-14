@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route/*, Link*/ } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch/*, Link*/ } from "react-router-dom";
 
 import '../../App.css';
 import Register from '../../view/register/Register';
@@ -67,13 +67,13 @@ class AppProvider extends Component {
       <Router>
         {
           this.state.sessionInfo.firstName ? (
-            <React.Fragment>
+            <Switch>
               {/* Add here Authenticated components */}
               <Route path="/" component={Home} />
               <Route path="/profile" component={Profile} />
-            </React.Fragment>
+            </Switch>
           ) : (
-            <React.Fragment>
+            <Switch>
               {/* Add here Not Authenticated components */}
               <Route exact path="/" component={Login} />
               <Route path="/register" component={Register} />
@@ -81,7 +81,7 @@ class AppProvider extends Component {
               <Route path="/terms" component={TermsAndConditions} />
               <Route path="/payment" component={Payment} />
               <Route path="/payment-result" component={PaymentResult} />
-            </React.Fragment>
+            </Switch>
           )
         }
       </Router>

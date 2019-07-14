@@ -374,6 +374,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin: 10px 0;
   /* background-color: red; */
 }
 
@@ -388,6 +389,14 @@
   justify-content: space-between;
 }
 
+.iva-resume-item-pay {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-weight: 500;
+}
+
 .iva-resume-item-value {
   padding-left: 20px;
 }
@@ -397,29 +406,31 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
-  /* background-color: red; */
 }
 
-.iva-list-buy {
+.iva-list-table {
   display: flex;
   flex-direction: row;
   font-weight: 400;
-  /* flex-wrap: wrap; */
-  /* justify-content: center; */
 }
 
-.iva-list-sell {
-  display: flex;
-  flex-direction: row;
-  font-weight: 400;
-  /* flex-wrap: wrap; */
-  /* justify-content: center; */
+.table-title {
+  margin: 15px 0 0;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.table-title-new {
+  margin: 10px 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .iva-title {
   padding: 10px;
   margin-top: 10px;
-  font-weight: bold;
+  font-weight: 700;
   text-align: center;
   white-space: nowrap;
   border-top: 1px dotted orange;
@@ -467,6 +478,33 @@
 
 .hidden-div {
   visibility: hidden;
+}
+
+.anexo-table {
+    display: flex;
+}
+
+.anexo-title {
+  padding: 10px;
+  margin-top: 10px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  border-top: 1px dotted orange;
+  border-bottom: 1px dotted orange;
+  border-left: 1px dotted orange;
+
+  border-right: 1px dotted orange;
+}
+
+.anexo-answer {
+  padding: 10px;
+  white-space: nowrap;
+  border-top: 1px dotted orange;
+  border-bottom: 1px dotted orange;
+  border-left: 1px dotted orange;
+
+  border-right: 1px dotted orange;
 }
 
 input {

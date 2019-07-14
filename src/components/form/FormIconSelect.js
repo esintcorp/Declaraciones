@@ -57,7 +57,8 @@ const FormIconSelect = props => {
     },
     addedClassNames = addClassNames("", props.classNames),
     idValue = props.idValue || "value",
-    selectedValue = props.value && props.options.find(option => option[idValue] === props.value);
+    selectedValue = props.value && props.options.find(option => option[idValue] === props.value),
+    placeholder = props.placeholder || "Seleccione...";
 
   return (
     <div className="App-input" style={props.style}>
@@ -75,7 +76,7 @@ const FormIconSelect = props => {
           onChange={selected => {
             props.onChange(selected && selected.value);
           }}
-          placeholder={props.placeholder}
+          placeholder={placeholder}
           styles={colourStyles}
         />
       </div>

@@ -42,6 +42,16 @@ class IvaForm extends Component {
     const label = options.find(item => item.value === value).label;
     let { newIvaAnswer } = this.state;
 
+    // Setting Taxes values, 19 is Tax Retention
+    if (newIvaAnswer[index].id === 19) {
+      newIvaAnswer[index + 1].value = newIvaAnswer[index - 4].value * Number(label)/100
+    }
+
+    // Setting Taxes values, 21 is Source Retention
+    if (newIvaAnswer[index].id === 21) {
+      newIvaAnswer[index + 1].value = newIvaAnswer[index - 7].value * Number(label)/100
+    }
+
     newIvaAnswer[index].value = label;
 
     this.setState({
@@ -61,10 +71,14 @@ class IvaForm extends Component {
   }
 
   render() {
-    const { data, history } = this.props,
+    const { data, history, filter } = this.props,
       { newIvaAnswer } = this.state;
 
     if (newIvaAnswer.length > 0) return (
+      <React.Fragment>
+      <div className="table-title-new">
+        {filter === 1 ? "Factura nueva de Compra" : "Factura nueva de Venta"}
+      </div>
       <Form
         className="iva-list-new"
         endpoint="saveAnswers"
@@ -85,6 +99,8 @@ class IvaForm extends Component {
             if (item.type === "string") {
               type = "text";
             } else if (item.type === "double") {
+              type = "number";
+            } else if (item.type === "percentage") {
               type = "number";
             } else {
               type = "date";
@@ -132,7 +148,7 @@ class IvaForm extends Component {
                 label={item.name}
                 value={this.state.newIvaAnswer[index].value}
                 disabled={
-                  item.id === 6 || item.id === 7 || item.id === 15 || item.id === 16
+                  item.id === 6 || item.id === 7 || item.id === 15 || item.id === 16 || item.id === 20 || item.id === 22
                 }
                 onChange={event => this.handleChange(index, event)}
                 classNames={["quest", type === "date" ? "input-width-70" : null]}
@@ -149,6 +165,7 @@ class IvaForm extends Component {
           })
         }
       </Form>
+      </React.Fragment>
     )
   }
 }
