@@ -310,6 +310,7 @@
   color: white;
   text-decoration: unset;
   font-size: unset;
+  text-align: center;
 }
 
 .item:focus {
