@@ -46,13 +46,13 @@ class IvaForm extends Component {
     // Setting Taxes values, 19 is Tax Retention
     if (newIvaAnswer[index].id === 19) {
       newIvaAnswer[index + 1].value =
-        (newIvaAnswer[index - 4].value * Number(label)) / 100;
+        ((newIvaAnswer[index - 4].value * Number(label)) / 100).toFixed(2);
     }
 
     // Setting Taxes values, 21 is Source Retention
     if (newIvaAnswer[index].id === 21) {
       newIvaAnswer[index + 1].value =
-        (newIvaAnswer[index - 7].value * Number(label)) / 100;
+        ((newIvaAnswer[index - 7].value * Number(label)) / 100).toFixed(2);
     }
 
     newIvaAnswer[index].value = label;

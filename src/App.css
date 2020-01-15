@@ -482,7 +482,12 @@
 }
 
 .anexo-table {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+}
+
+.anexo-table-title {
+  display: flex;
 }
 
 .anexo-title {

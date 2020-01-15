@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-
 import { doFetch } from '../../utility/Util';
-
 import IvaForm from "./IvaForm";
 import IvaTable from "./IvaTable";
 

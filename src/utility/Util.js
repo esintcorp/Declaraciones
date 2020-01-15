@@ -41,7 +41,7 @@ doFetch = ({
   onFetchError = () => {},
   onJsonError = () => {}
 }) => {
-  // console.info('doFetch', onOK(), serverURL, endpoint)
+  console.info('doFetch', onOK(), serverURL, endpoint, body)
   fetch(serverURL + endpoint, {
     method: "POST",
     mode: 'cors',
